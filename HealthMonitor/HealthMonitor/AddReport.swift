@@ -9,10 +9,14 @@
 import SwiftUI
 
 struct AddReport: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @Binding var addingReport: Bool
-    @State var username: String = ""
     
     @State var temp: String
+    @State var date = Date() // Current Date
+    
+
     
     var body: some View {
         NavigationView {
@@ -20,8 +24,15 @@ struct AddReport: View {
                 TextField("Temperatura", text: $temp)
                 .keyboardType(.numberPad)
             }
+            .navigationBarTitle("New Report", displayMode: .inline)
                 
-            .navigationBarTitle("New Report")
+            .navigationBarItems(trailing:Button(action: {
+                self.presentationMode.wrappedValue.dismiss()
+                
+                
+            }) {Text("Cancel")})
+            
+            
         }
     }
 }

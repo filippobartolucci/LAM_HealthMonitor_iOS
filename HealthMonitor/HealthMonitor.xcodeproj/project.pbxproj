@@ -17,6 +17,7 @@
 		20AD7DE124BB45A8002733A4 /* HealthMonitorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DE024BB45A8002733A4 /* HealthMonitorUITests.swift */; };
 		20AD7DEF24BB46C0002733A4 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DEE24BB46C0002733A4 /* Report.swift */; };
 		20AD7DF124BB48DA002733A4 /* AddReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DF024BB48DA002733A4 /* AddReport.swift */; };
+		20AD7DF324BB5B98002733A4 /* ReportRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DF224BB5B98002733A4 /* ReportRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		20AD7DE224BB45A8002733A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20AD7DEE24BB46C0002733A4 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		20AD7DF024BB48DA002733A4 /* AddReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReport.swift; sourceTree = "<group>"; };
+		20AD7DF224BB5B98002733A4 /* ReportRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				20AD7DBD24BB45A7002733A4 /* SceneDelegate.swift */,
 				20AD7DC224BB45A7002733A4 /* ContentView.swift */,
 				20AD7DEE24BB46C0002733A4 /* Report.swift */,
+				20AD7DF224BB5B98002733A4 /* ReportRow.swift */,
 				20AD7DF024BB48DA002733A4 /* AddReport.swift */,
 				20AD7DC424BB45A8002733A4 /* Assets.xcassets */,
 				20AD7DCC24BB45A8002733A4 /* Info.plist */,
@@ -272,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20AD7DF324BB5B98002733A4 /* ReportRow.swift in Sources */,
 				20AD7DC124BB45A7002733A4 /* HealthMonitor.xcdatamodeld in Sources */,
 				20AD7DEF24BB46C0002733A4 /* Report.swift in Sources */,
 				20AD7DBC24BB45A7002733A4 /* AppDelegate.swift in Sources */,

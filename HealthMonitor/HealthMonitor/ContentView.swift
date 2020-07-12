@@ -20,12 +20,13 @@ struct ContentView: View {
                     Text("Hello World")
                 }
             }
-            .navigationBarTitle(Text("Healt Monitor"), displayMode: .automatic)
+            .navigationBarTitle(Text("Healt Monitor"), displayMode: .inline)
             .navigationBarItems(trailing:Button(action: {
                 self.addingReport.toggle()
             }) {Image(systemName: "plus")})
+                
             .sheet(isPresented: $addingReport) {
-                AddReport(addingReport: self.$addingReport, temp: "0")
+                    AddReport(addingReport: self.$addingReport, temp: "0")
             }
         }
     }
@@ -33,6 +34,10 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+           ContentView().environment(\.colorScheme, .light)
+           //ContentView().environment(\.colorScheme, .dark)
+        }
+
     }
 }
