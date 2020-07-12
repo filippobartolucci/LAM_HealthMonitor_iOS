@@ -26,19 +26,10 @@ struct AddReport: View {
             }
             .navigationBarTitle("New Report", displayMode: .inline)
                 
-            .navigationBarItems(trailing:Button(action: {
-                self.presentationMode.wrappedValue.dismiss()
-                
-                
-            }) {Text("Cancel")})
+            .navigationBarItems(leading:Button(action: {self.presentationMode.wrappedValue.dismiss()}){Text("Cancel")},trailing:Button(action: {}){Text("Add")})
             
             
         }
     }
 }
 
-struct AddReport_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
-    }
-}

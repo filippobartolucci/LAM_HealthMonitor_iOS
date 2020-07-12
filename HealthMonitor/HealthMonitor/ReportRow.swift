@@ -9,7 +9,25 @@
 import SwiftUI
 
 struct ReportRow: View {
+    let report : Report
+    
+    static var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            Text(ReportRow.self.dateFormatter.string(from: report.date))
+            Spacer()
+            Text(String(format:"%.1f", report.temperature)+" C")
+        }
+    }
+}
+
+struct ReportRow_Previews: PreviewProvider {
+    static var previews: some View {
+        ReportRow(report: Report(date : Date(timeIntervalSince1970: 1056730041), temperature: 37.5))
     }
 }

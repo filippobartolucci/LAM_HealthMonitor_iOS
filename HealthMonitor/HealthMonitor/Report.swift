@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct Report{
+struct Report: Hashable, Codable, Identifiable{
+    let id = UUID()
     let date: Date
     let temperature: Double
 }
