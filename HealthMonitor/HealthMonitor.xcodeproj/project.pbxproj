@@ -21,6 +21,8 @@
 		20AD7DEF24BB46C0002733A4 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DEE24BB46C0002733A4 /* Report.swift */; };
 		20AD7DF124BB48DA002733A4 /* AddReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DF024BB48DA002733A4 /* AddReport.swift */; };
 		20AD7DF324BB5B98002733A4 /* ReportRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DF224BB5B98002733A4 /* ReportRow.swift */; };
+		20E39A2424BCBE20004729C6 /* ReportList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E39A2324BCBE20004729C6 /* ReportList.swift */; };
+		20E39A2624BCE40E004729C6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E39A2524BCE40E004729C6 /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		20AD7DEE24BB46C0002733A4 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		20AD7DF024BB48DA002733A4 /* AddReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReport.swift; sourceTree = "<group>"; };
 		20AD7DF224BB5B98002733A4 /* ReportRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRow.swift; sourceTree = "<group>"; };
+		20E39A2324BCBE20004729C6 /* ReportList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportList.swift; sourceTree = "<group>"; };
+		20E39A2524BCE40E004729C6 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,12 +125,12 @@
 			isa = PBXGroup;
 			children = (
 				20853B6E24BC91DD00FD0BF1 /* Delegate */,
+				20AD7DEE24BB46C0002733A4 /* Report.swift */,
 				20853B6C24BC91D200FD0BF1 /* Localizable.strings */,
 				20AD7DC224BB45A7002733A4 /* ContentView.swift */,
-				20AD7DEE24BB46C0002733A4 /* Report.swift */,
-				20853B6924BB964B00FD0BF1 /* ReportDetail.swift */,
-				20AD7DF224BB5B98002733A4 /* ReportRow.swift */,
 				20AD7DF024BB48DA002733A4 /* AddReport.swift */,
+				20E39A2524BCE40E004729C6 /* Settings.swift */,
+				20E39A2724BCE417004729C6 /* ReportList */,
 				20AD7DC424BB45A8002733A4 /* Assets.xcassets */,
 				20AD7DCC24BB45A8002733A4 /* Info.plist */,
 				20AD7DBF24BB45A7002733A4 /* HealthMonitor.xcdatamodeld */,
@@ -159,6 +163,16 @@
 				20AD7DE224BB45A8002733A4 /* Info.plist */,
 			);
 			path = HealthMonitorUITests;
+			sourceTree = "<group>";
+		};
+		20E39A2724BCE417004729C6 /* ReportList */ = {
+			isa = PBXGroup;
+			children = (
+				20E39A2324BCBE20004729C6 /* ReportList.swift */,
+				20853B6924BB964B00FD0BF1 /* ReportDetail.swift */,
+				20AD7DF224BB5B98002733A4 /* ReportRow.swift */,
+			);
+			name = ReportList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,8 +316,10 @@
 				20AD7DC124BB45A7002733A4 /* HealthMonitor.xcdatamodeld in Sources */,
 				20AD7DEF24BB46C0002733A4 /* Report.swift in Sources */,
 				20AD7DBC24BB45A7002733A4 /* AppDelegate.swift in Sources */,
+				20E39A2624BCE40E004729C6 /* Settings.swift in Sources */,
 				20853B6A24BB964B00FD0BF1 /* ReportDetail.swift in Sources */,
 				20AD7DC324BB45A7002733A4 /* ContentView.swift in Sources */,
+				20E39A2424BCBE20004729C6 /* ReportList.swift in Sources */,
 				20AD7DBE24BB45A7002733A4 /* SceneDelegate.swift in Sources */,
 				20AD7DF124BB48DA002733A4 /* AddReport.swift in Sources */,
 			);

@@ -16,20 +16,35 @@ struct AddReport: View {
     
     @State var temperature = ""
     @State var date = Date() // Current Date
-    
+    @State var weight = ""
+    @State var text = ""
+   
     
 
     
     var body: some View {
         NavigationView {
             Form {
-                TextField("Temperatura", text: $temperature)
-                    .keyboardType(.decimalPad)
+                
+                Section(header: Text("Temperature").bold()) {
+                    TextField("Insert here", text: $temperature)
+                        .keyboardType(.decimalPad)
+                }
+                
+                Section(header: Text("Weight").bold()) {
+                    TextField("Insert here", text: $weight)
+                        .keyboardType(.decimalPad)
+                }
+                
+                Section(header: Text("Note").bold()) {
+                    TextField("Insert here", text: $text)
+                }
+                
                 
                 
                 if (self.checkValidForm()) {
                     Button(action: {
-                        let newReport = Report(date : Date(), temperature: (Float(self.temperature) ?? 0))
+                        let newReport = Report(date: Date(), temperature: (Float(self.temperature) ?? 0), weight: (Float(self.weight) ?? 0.0), note: (self.text) )
                         self.reports.append(newReport)
                         self.presentationMode.wrappedValue.dismiss()
                        }, label: {

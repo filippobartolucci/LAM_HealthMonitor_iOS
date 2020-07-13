@@ -10,26 +10,40 @@ import SwiftUI
 
 struct ReportDetail: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @State var showSheet = false
     @Binding var reports: [Report]
+    var report : Report
     
-    let report : Report
     
     var body: some View {
         
-        HStack{
-//            Text(String(format:"%.1f", report.temperature)+" C")
-            Form{
+        List{
+            Section(header: Text("Report values")){
+                Text(String(self.report.temperature))
+                Text(String(self.report.weight))
+            }
+                
+            Section(header: Text("Note")){
+                Text(String(self.report.note))
+            }
+                    
+            Section{
                 Button(action: {
-                    self.deleteReport()
+                    self.showSheet.toggle()
                 }) {
                     Text("Delete this report")
-                    .foregroundColor(.red)
+                        .foregroundColor(.red)
                 }
-                
             }
         }
-       
+        .actionSheet(isPresented: $showSheet) {
+            ActionSheet(title: Text("Delete report"),message: Text("Are you sure you want to delete this report?"), buttons: [
+                .default(Text("Yes").foregroundColor(.red)) { self.deleteReport() },
+                .cancel()
+            ])
+        }
     }
+    
     
     private func deleteReport(){
         if let index = self.reports.firstIndex(of: self.report) {
