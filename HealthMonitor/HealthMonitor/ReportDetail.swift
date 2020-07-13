@@ -18,16 +18,24 @@ struct ReportDetail: View {
         
         HStack{
 //            Text(String(format:"%.1f", report.temperature)+" C")
-            Button(action: {
-                if let index = self.reports.firstIndex(of: self.report) {
-                    self.reports.remove(at: index)
-                    self.mode.wrappedValue.dismiss()
+            Form{
+                Button(action: {
+                    self.deleteReport()
+                }) {
+                    Text("Delete this report")
+                    .foregroundColor(.red)
                 }
-            }) {
-            Text(/*@START_MENU_TOKEN@*/"Button"/*@END_MENU_TOKEN@*/)
+                
             }
         }
        
+    }
+    
+    private func deleteReport(){
+        if let index = self.reports.firstIndex(of: self.report) {
+            self.reports.remove(at: index)
+            self.mode.wrappedValue.dismiss()
+        }
     }
 }
 

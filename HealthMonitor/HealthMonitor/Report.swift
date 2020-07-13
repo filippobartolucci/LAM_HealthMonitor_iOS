@@ -11,5 +11,5 @@ import Foundation
 struct Report: Hashable, Codable, Identifiable{
     let id = UUID()
     let date: Date
-    let temperature: Double
+    let temperature: Float
 }

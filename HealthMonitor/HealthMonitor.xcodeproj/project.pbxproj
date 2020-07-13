@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		20853B6A24BB964B00FD0BF1 /* ReportDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20853B6924BB964B00FD0BF1 /* ReportDetail.swift */; };
+		20853B6D24BC91D200FD0BF1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20853B6C24BC91D200FD0BF1 /* Localizable.strings */; };
+		20853B7124BCA45E00FD0BF1 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 20853B7024BCA45E00FD0BF1 /* SwiftUICharts */; };
 		20AD7DBC24BB45A7002733A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DBB24BB45A7002733A4 /* AppDelegate.swift */; };
 		20AD7DBE24BB45A7002733A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DBD24BB45A7002733A4 /* SceneDelegate.swift */; };
 		20AD7DC124BB45A7002733A4 /* HealthMonitor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DBF24BB45A7002733A4 /* HealthMonitor.xcdatamodeld */; };
@@ -40,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		20853B6924BB964B00FD0BF1 /* ReportDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetail.swift; sourceTree = "<group>"; };
+		20853B6C24BC91D200FD0BF1 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		20AD7DB824BB45A7002733A4 /* HealthMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20AD7DBB24BB45A7002733A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20AD7DBD24BB45A7002733A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20853B7124BCA45E00FD0BF1 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +88,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20853B6E24BC91DD00FD0BF1 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				20AD7DBB24BB45A7002733A4 /* AppDelegate.swift */,
+				20AD7DBD24BB45A7002733A4 /* SceneDelegate.swift */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
 		20AD7DAF24BB45A7002733A4 = {
 			isa = PBXGroup;
 			children = (
@@ -107,8 +120,8 @@
 		20AD7DBA24BB45A7002733A4 /* HealthMonitor */ = {
 			isa = PBXGroup;
 			children = (
-				20AD7DBB24BB45A7002733A4 /* AppDelegate.swift */,
-				20AD7DBD24BB45A7002733A4 /* SceneDelegate.swift */,
+				20853B6E24BC91DD00FD0BF1 /* Delegate */,
+				20853B6C24BC91D200FD0BF1 /* Localizable.strings */,
 				20AD7DC224BB45A7002733A4 /* ContentView.swift */,
 				20AD7DEE24BB46C0002733A4 /* Report.swift */,
 				20853B6924BB964B00FD0BF1 /* ReportDetail.swift */,
@@ -164,6 +177,9 @@
 			dependencies = (
 			);
 			name = HealthMonitor;
+			packageProductDependencies = (
+				20853B7024BCA45E00FD0BF1 /* SwiftUICharts */,
+			);
 			productName = HealthMonitor;
 			productReference = 20AD7DB824BB45A7002733A4 /* HealthMonitor.app */;
 			productType = "com.apple.product-type.application";
@@ -236,6 +252,9 @@
 				Base,
 			);
 			mainGroup = 20AD7DAF24BB45A7002733A4;
+			packageReferences = (
+				20853B6F24BCA45E00FD0BF1 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 20AD7DB924BB45A7002733A4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -253,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20AD7DC824BB45A8002733A4 /* Preview Assets.xcassets in Resources */,
+				20853B6D24BC91D200FD0BF1 /* Localizable.strings in Resources */,
 				20AD7DC524BB45A8002733A4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -599,6 +619,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		20853B6F24BCA45E00FD0BF1 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		20853B7024BCA45E00FD0BF1 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20853B6F24BCA45E00FD0BF1 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		20AD7DBF24BB45A7002733A4 /* HealthMonitor.xcdatamodeld */ = {

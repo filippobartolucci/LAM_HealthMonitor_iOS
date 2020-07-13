@@ -26,8 +26,3 @@ struct ReportRow: View {
     }
 }
 
-struct ReportRow_Previews: PreviewProvider {
-    static var previews: some View {
-        ReportRow(report: Report(date : Date(timeIntervalSince1970: 1056730041), temperature: 37.5))
-    }
-}
