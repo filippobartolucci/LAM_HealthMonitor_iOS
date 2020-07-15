@@ -9,6 +9,7 @@
 import SwiftUI
 import SwiftUICharts
 
+
 struct ContentView: View {
     
     // Sheet
@@ -16,53 +17,72 @@ struct ContentView: View {
     @State var showSheet = false
     
     @State var reports = reportExample()
-    
+    @State var days = Date.dates(from: Date().addingTimeInterval(-(60*60*24*10)), to: Date())
     
     var body: some View {
         NavigationView {
             VStack{
-                Section{
-                    LineView(data: (self.createTemperatureArray(reports: reports)), title: "Line chart")
-                        .padding()
-                    .offset(y : -60)
-                }
-                
-                Form{
-                    NavigationLink(destination: ReportList(reports: self.$reports)) {
-                        Text("Show reports")
+                if(self.reports.isEmpty){
+                    Button(action: {
+                        self.addingReport = true
+                        self.showSheet.toggle()}) {
+                        Text("Add first report")
                     }
-                }
-                    
-                .navigationBarTitle(Text("Healt Monitor"), displayMode: .inline)
-                    
-                .navigationBarItems( leading: Button(action: {
-                    self.addingReport = false
-                    self.showSheet.toggle()
-                }) {Image(systemName: "gear")},trailing:Button(action: {
-                    self.addingReport = true
-                    self.showSheet.toggle()
-                }) {Image(systemName: "plus")})
-                
-                    
-                .sheet(isPresented: $showSheet) {
-                    if (self.addingReport){
-                        AddReport(addingReport: self.$showSheet, reports: self.$reports)
-                    }else {
-                        Settings()
+                }else{
+                    Form{
+                        Section(header: Text("Calendar")){
+                            ScrollView(.horizontal) {
+                                HStack(spacing: 10) {
+                                    ForEach(days.reversed()) { day in
+                                        NavigationLink(destination: ReportDetail(reports: self.$reports, report: self.reports.last!)) {
+                                            Group{
+                                                CircleCell(date : day, days: self.days, reports: self.$reports, report : Report(date : Date(), temperature: 36.7, weight: 60))
+                                                    .animation(.easeInOut)
+                                                                                                }
+                                        }
+                                    }
+                                }.padding()
+                            }
+                            .frame(width:UIScreen.main.bounds.size.width ,height: 100)
+                            .offset(x : -20)
+                        }
                         
+                        Section{
+                            NavigationLink(destination: ReportDetail(reports: self.$reports, report: self.reports.last!)) {
+                                Text("Last report")
+                            }
+                            NavigationLink(destination: ReportList(reports: self.$reports)) {
+                                Text("Show all reports")
+                            }
+                        }
                     }
-                    
+                }
+            }
+            // MARK: -NavigationBar modifiers
+            .navigationBarTitle(Text("Healt Monitor"), displayMode: .inline)
+            .navigationBarItems( leading: Button(action: {
+                self.addingReport = false
+                self.showSheet.toggle()
+            }) {Image(systemName: "gear")},trailing:Button(action: {
+                self.addingReport = true
+                self.showSheet.toggle()
+            }) {Image(systemName: "plus")})
+                
+            .sheet(isPresented: $showSheet) {
+                if (self.addingReport){
+                    AddReport(addingReport: self.$showSheet, reports: self.$reports)
+                }else {
+                    Settings()
                 }
             }
         }
     }
     
-    
     static func reportExample() -> [Report] {
-        let r1 = Report(date : Date(timeIntervalSince1970: 1056535641), temperature: 37.5, weight: 60)
+        let r1 = Report(date : Date(timeIntervalSince1970: 1256535641), temperature: 37.5, weight: 60)
         let r2 = Report(date : Date(timeIntervalSince1970: 1299984641), temperature: 36.0, weight: 60)
         let r3 = Report(date : Date(), temperature: 36.7, weight: 60)
-        return [r1, r2, r3,r1, r2, r3,r1, r2, r3,r1, r2, r3]
+        return [r1, r2, r3]
     }
     
     private func createTemperatureArray(reports : [Report]) -> [Double] {

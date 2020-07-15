@@ -12,6 +12,8 @@ struct Report: Hashable, Codable, Identifiable{
     let id = UUID()
     let date : Date 
     var temperature : Float
+    var temperatureImportance = 3
     var weight : Float
+    var weightImportance = 3
     var note = ""
 }

@@ -7,8 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20198F0824BE1A21001442C8 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20198F0724BE1A21001442C8 /* CalendarView.swift */; };
+		20198F0B24BE2CA9001442C8 /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 20198F0A24BE2CA9001442C8 /* QGrid */; };
+		20198F0D24BE5287001442C8 /* MyCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20198F0C24BE5287001442C8 /* MyCalendarCell.swift */; };
+		20198F1024BF1D84001442C8 /* CircleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20198F0F24BF1D84001442C8 /* CircleCell.swift */; };
+		20198F1224BF1E4F001442C8 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20198F1124BF1E4F001442C8 /* DateExtension.swift */; };
+		20198F1524BF2195001442C8 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 20198F1424BF2195001442C8 /* Introspect */; };
+		20198F1824BF5913001442C8 /* ReportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20198F1724BF5913001442C8 /* ReportCard.swift */; };
+		207C607324BDDD9C00A6C490 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 207C607224BDDD9C00A6C490 /* SwiftUIX */; };
+		207C607624BDDF9B00A6C490 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 207C607524BDDF9B00A6C490 /* SwiftUIPager */; };
+		207C608024BE074300A6C490 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 207C608224BE074300A6C490 /* Localizable.strings */; };
 		20853B6A24BB964B00FD0BF1 /* ReportDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20853B6924BB964B00FD0BF1 /* ReportDetail.swift */; };
-		20853B6D24BC91D200FD0BF1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20853B6C24BC91D200FD0BF1 /* Localizable.strings */; };
 		20853B7124BCA45E00FD0BF1 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 20853B7024BCA45E00FD0BF1 /* SwiftUICharts */; };
 		20AD7DBC24BB45A7002733A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DBB24BB45A7002733A4 /* AppDelegate.swift */; };
 		20AD7DBE24BB45A7002733A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DBD24BB45A7002733A4 /* SceneDelegate.swift */; };
@@ -42,9 +51,28 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		207C609824BE091900A6C490 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		20198F0724BE1A21001442C8 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		20198F0C24BE5287001442C8 /* MyCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarCell.swift; sourceTree = "<group>"; };
+		20198F0F24BF1D84001442C8 /* CircleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCell.swift; sourceTree = "<group>"; };
+		20198F1124BF1E4F001442C8 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		20198F1724BF5913001442C8 /* ReportCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCard.swift; sourceTree = "<group>"; };
+		207C608124BE074300A6C490 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		207C608924BE091900A6C490 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		20853B6924BB964B00FD0BF1 /* ReportDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetail.swift; sourceTree = "<group>"; };
-		20853B6C24BC91D200FD0BF1 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		20AD7DB824BB45A7002733A4 /* HealthMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20AD7DBB24BB45A7002733A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20AD7DBD24BB45A7002733A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,7 +99,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20198F0B24BE2CA9001442C8 /* QGrid in Frameworks */,
+				20198F1524BF2195001442C8 /* Introspect in Frameworks */,
 				20853B7124BCA45E00FD0BF1 /* SwiftUICharts in Frameworks */,
+				207C607324BDDD9C00A6C490 /* SwiftUIX in Frameworks */,
+				207C607624BDDF9B00A6C490 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +124,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20198F0E24BE528F001442C8 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				20198F1124BF1E4F001442C8 /* DateExtension.swift */,
+				20198F0F24BF1D84001442C8 /* CircleCell.swift */,
+				20198F1624BF382D001442C8 /* CalendarView */,
+			);
+			name = Calendar;
+			sourceTree = "<group>";
+		};
+		20198F1624BF382D001442C8 /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				20198F0724BE1A21001442C8 /* CalendarView.swift */,
+				20198F0C24BE5287001442C8 /* MyCalendarCell.swift */,
+			);
+			name = CalendarView;
+			sourceTree = "<group>";
+		};
+		207C608824BE091900A6C490 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				207C608924BE091900A6C490 /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		20853B6E24BC91DD00FD0BF1 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +166,7 @@
 				20AD7DBA24BB45A7002733A4 /* HealthMonitor */,
 				20AD7DD424BB45A8002733A4 /* HealthMonitorTests */,
 				20AD7DDF24BB45A8002733A4 /* HealthMonitorUITests */,
+				207C608824BE091900A6C490 /* Frameworks */,
 				20AD7DB924BB45A7002733A4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -125,12 +185,13 @@
 			isa = PBXGroup;
 			children = (
 				20853B6E24BC91DD00FD0BF1 /* Delegate */,
-				20AD7DEE24BB46C0002733A4 /* Report.swift */,
-				20853B6C24BC91D200FD0BF1 /* Localizable.strings */,
+				20E39A2724BCE417004729C6 /* ReportList */,
+				20198F0E24BE528F001442C8 /* Calendar */,
 				20AD7DC224BB45A7002733A4 /* ContentView.swift */,
 				20AD7DF024BB48DA002733A4 /* AddReport.swift */,
 				20E39A2524BCE40E004729C6 /* Settings.swift */,
-				20E39A2724BCE417004729C6 /* ReportList */,
+				20AD7DEE24BB46C0002733A4 /* Report.swift */,
+				207C608224BE074300A6C490 /* Localizable.strings */,
 				20AD7DC424BB45A8002733A4 /* Assets.xcassets */,
 				20AD7DCC24BB45A8002733A4 /* Info.plist */,
 				20AD7DBF24BB45A7002733A4 /* HealthMonitor.xcdatamodeld */,
@@ -170,6 +231,7 @@
 			children = (
 				20E39A2324BCBE20004729C6 /* ReportList.swift */,
 				20853B6924BB964B00FD0BF1 /* ReportDetail.swift */,
+				20198F1724BF5913001442C8 /* ReportCard.swift */,
 				20AD7DF224BB5B98002733A4 /* ReportRow.swift */,
 			);
 			name = ReportList;
@@ -185,6 +247,7 @@
 				20AD7DB424BB45A7002733A4 /* Sources */,
 				20AD7DB524BB45A7002733A4 /* Frameworks */,
 				20AD7DB624BB45A7002733A4 /* Resources */,
+				207C609824BE091900A6C490 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -193,6 +256,10 @@
 			name = HealthMonitor;
 			packageProductDependencies = (
 				20853B7024BCA45E00FD0BF1 /* SwiftUICharts */,
+				207C607224BDDD9C00A6C490 /* SwiftUIX */,
+				207C607524BDDF9B00A6C490 /* SwiftUIPager */,
+				20198F0A24BE2CA9001442C8 /* QGrid */,
+				20198F1424BF2195001442C8 /* Introspect */,
 			);
 			productName = HealthMonitor;
 			productReference = 20AD7DB824BB45A7002733A4 /* HealthMonitor.app */;
@@ -263,11 +330,16 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				it,
 				Base,
 			);
 			mainGroup = 20AD7DAF24BB45A7002733A4;
 			packageReferences = (
 				20853B6F24BCA45E00FD0BF1 /* XCRemoteSwiftPackageReference "ChartView" */,
+				207C607124BDDD9C00A6C490 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				207C607424BDDF9B00A6C490 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
+				20198F0924BE2CA9001442C8 /* XCRemoteSwiftPackageReference "QGrid" */,
+				20198F1324BF2195001442C8 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 20AD7DB924BB45A7002733A4 /* Products */;
 			projectDirPath = "";
@@ -286,7 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20AD7DC824BB45A8002733A4 /* Preview Assets.xcassets in Resources */,
-				20853B6D24BC91D200FD0BF1 /* Localizable.strings in Resources */,
+				207C608024BE074300A6C490 /* Localizable.strings in Resources */,
 				20AD7DC524BB45A8002733A4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,14 +384,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20198F0824BE1A21001442C8 /* CalendarView.swift in Sources */,
+				20198F1224BF1E4F001442C8 /* DateExtension.swift in Sources */,
 				20AD7DF324BB5B98002733A4 /* ReportRow.swift in Sources */,
 				20AD7DC124BB45A7002733A4 /* HealthMonitor.xcdatamodeld in Sources */,
 				20AD7DEF24BB46C0002733A4 /* Report.swift in Sources */,
 				20AD7DBC24BB45A7002733A4 /* AppDelegate.swift in Sources */,
 				20E39A2624BCE40E004729C6 /* Settings.swift in Sources */,
 				20853B6A24BB964B00FD0BF1 /* ReportDetail.swift in Sources */,
+				20198F0D24BE5287001442C8 /* MyCalendarCell.swift in Sources */,
 				20AD7DC324BB45A7002733A4 /* ContentView.swift in Sources */,
+				20198F1824BF5913001442C8 /* ReportCard.swift in Sources */,
 				20E39A2424BCBE20004729C6 /* ReportList.swift in Sources */,
+				20198F1024BF1D84001442C8 /* CircleCell.swift in Sources */,
 				20AD7DBE24BB45A7002733A4 /* SceneDelegate.swift in Sources */,
 				20AD7DF124BB48DA002733A4 /* AddReport.swift in Sources */,
 			);
@@ -355,6 +432,17 @@
 			targetProxy = 20AD7DDD24BB45A8002733A4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		207C608224BE074300A6C490 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				207C608124BE074300A6C490 /* it */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		20AD7DE324BB45A8002733A4 /* Debug */ = {
@@ -475,6 +563,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HealthMonitor/HealthMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"HealthMonitor/Preview Content\"";
 				DEVELOPMENT_TEAM = 2X58VNGWW7;
@@ -486,6 +575,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = lam.HealthMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -495,6 +585,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HealthMonitor/HealthMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"HealthMonitor/Preview Content\"";
 				DEVELOPMENT_TEAM = 2X58VNGWW7;
@@ -506,6 +597,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = lam.HealthMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -637,6 +729,38 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		20198F0924BE2CA9001442C8 /* XCRemoteSwiftPackageReference "QGrid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Q-Mobile/QGrid";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
+		20198F1324BF2195001442C8 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/timbersoftware/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+		207C607124BDDD9C00A6C490 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		207C607424BDDF9B00A6C490 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.0;
+			};
+		};
 		20853B6F24BCA45E00FD0BF1 /* XCRemoteSwiftPackageReference "ChartView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppPear/ChartView";
@@ -648,6 +772,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		20198F0A24BE2CA9001442C8 /* QGrid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20198F0924BE2CA9001442C8 /* XCRemoteSwiftPackageReference "QGrid" */;
+			productName = QGrid;
+		};
+		20198F1424BF2195001442C8 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20198F1324BF2195001442C8 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+		207C607224BDDD9C00A6C490 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 207C607124BDDD9C00A6C490 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
+		207C607524BDDF9B00A6C490 /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 207C607424BDDF9B00A6C490 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
+		};
 		20853B7024BCA45E00FD0BF1 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 20853B6F24BCA45E00FD0BF1 /* XCRemoteSwiftPackageReference "ChartView" */;

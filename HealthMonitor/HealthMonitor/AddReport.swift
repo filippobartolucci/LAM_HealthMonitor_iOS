@@ -14,10 +14,15 @@ struct AddReport: View {
     @Binding var addingReport: Bool
     @Binding var reports : [Report]
     
+    // MARK: -Report Values
     @State var temperature = ""
     @State var date = Date() // Current Date
     @State var weight = ""
     @State var text = ""
+    
+    // MARK: -Report Importance
+    @State var tempImportance = 3
+    @State var weightImportance = 3
    
     
 
@@ -29,11 +34,18 @@ struct AddReport: View {
                 Section(header: Text("Temperature").bold()) {
                     TextField("Insert here", text: $temperature)
                         .keyboardType(.decimalPad)
+                    
+                    VStack {
+                        Stepper("Importance: \(tempImportance)", value: $tempImportance, in: 1...5)
+                    }
                 }
                 
                 Section(header: Text("Weight").bold()) {
                     TextField("Insert here", text: $weight)
                         .keyboardType(.decimalPad)
+                    VStack {
+                        Stepper("Importance: \(weightImportance)", value: $weightImportance, in: 1...5)
+                    }
                 }
                 
                 Section(header: Text("Note").bold()) {
@@ -44,7 +56,7 @@ struct AddReport: View {
                 
                 if (self.checkValidForm()) {
                     Button(action: {
-                        let newReport = Report(date: Date(), temperature: (Float(self.temperature) ?? 0), weight: (Float(self.weight) ?? 0.0), note: (self.text) )
+                        let newReport = Report(date: Date(), temperature: (Float(self.temperature) ?? 0),temperatureImportance: self.tempImportance, weight: (Float(self.weight) ?? 0.0), weightImportance: self.weightImportance,note: (self.text) )
                         self.reports.append(newReport)
                         self.presentationMode.wrappedValue.dismiss()
                        }, label: {
