@@ -12,13 +12,11 @@
 		20198F0D24BE5287001442C8 /* MyCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20198F0C24BE5287001442C8 /* MyCalendarCell.swift */; };
 		20198F1024BF1D84001442C8 /* CircleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20198F0F24BF1D84001442C8 /* CircleCell.swift */; };
 		20198F1224BF1E4F001442C8 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20198F1124BF1E4F001442C8 /* DateExtension.swift */; };
-		20198F1524BF2195001442C8 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 20198F1424BF2195001442C8 /* Introspect */; };
 		20198F1824BF5913001442C8 /* ReportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20198F1724BF5913001442C8 /* ReportCard.swift */; };
-		207C607324BDDD9C00A6C490 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 207C607224BDDD9C00A6C490 /* SwiftUIX */; };
-		207C607624BDDF9B00A6C490 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 207C607524BDDF9B00A6C490 /* SwiftUIPager */; };
 		207C608024BE074300A6C490 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 207C608224BE074300A6C490 /* Localizable.strings */; };
 		20853B6A24BB964B00FD0BF1 /* ReportDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20853B6924BB964B00FD0BF1 /* ReportDetail.swift */; };
 		20853B7124BCA45E00FD0BF1 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 20853B7024BCA45E00FD0BF1 /* SwiftUICharts */; };
+		20985FE224C8BB85000D3EE7 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20985FE124C8BB85000D3EE7 /* GraphView.swift */; };
 		20AD7DBC24BB45A7002733A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DBB24BB45A7002733A4 /* AppDelegate.swift */; };
 		20AD7DBE24BB45A7002733A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DBD24BB45A7002733A4 /* SceneDelegate.swift */; };
 		20AD7DC124BB45A7002733A4 /* HealthMonitor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DBF24BB45A7002733A4 /* HealthMonitor.xcdatamodeld */; };
@@ -29,7 +27,6 @@
 		20AD7DE124BB45A8002733A4 /* HealthMonitorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DE024BB45A8002733A4 /* HealthMonitorUITests.swift */; };
 		20AD7DEF24BB46C0002733A4 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DEE24BB46C0002733A4 /* Report.swift */; };
 		20AD7DF124BB48DA002733A4 /* AddReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DF024BB48DA002733A4 /* AddReport.swift */; };
-		20AD7DF324BB5B98002733A4 /* ReportRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DF224BB5B98002733A4 /* ReportRow.swift */; };
 		20CB002624C86343000FCD51 /* InfoCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CB002524C86343000FCD51 /* InfoCards.swift */; };
 		20E39A2424BCBE20004729C6 /* ReportList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E39A2324BCBE20004729C6 /* ReportList.swift */; };
 		20E39A2624BCE40E004729C6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E39A2524BCE40E004729C6 /* Settings.swift */; };
@@ -74,6 +71,7 @@
 		207C608124BE074300A6C490 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		207C608924BE091900A6C490 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		20853B6924BB964B00FD0BF1 /* ReportDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetail.swift; sourceTree = "<group>"; };
+		20985FE124C8BB85000D3EE7 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		20AD7DB824BB45A7002733A4 /* HealthMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20AD7DBB24BB45A7002733A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20AD7DBD24BB45A7002733A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 		20AD7DE224BB45A8002733A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20AD7DEE24BB46C0002733A4 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		20AD7DF024BB48DA002733A4 /* AddReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReport.swift; sourceTree = "<group>"; };
-		20AD7DF224BB5B98002733A4 /* ReportRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRow.swift; sourceTree = "<group>"; };
 		20CB002524C86343000FCD51 /* InfoCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCards.swift; sourceTree = "<group>"; };
 		20E39A2324BCBE20004729C6 /* ReportList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportList.swift; sourceTree = "<group>"; };
 		20E39A2524BCE40E004729C6 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -102,10 +99,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20198F0B24BE2CA9001442C8 /* QGrid in Frameworks */,
-				20198F1524BF2195001442C8 /* Introspect in Frameworks */,
 				20853B7124BCA45E00FD0BF1 /* SwiftUICharts in Frameworks */,
-				207C607324BDDD9C00A6C490 /* SwiftUIX in Frameworks */,
-				207C607624BDDF9B00A6C490 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +185,7 @@
 				20198F0E24BE528F001442C8 /* Calendar */,
 				20AD7DF024BB48DA002733A4 /* AddReport.swift */,
 				20AD7DC224BB45A7002733A4 /* ContentView.swift */,
+				20985FE124C8BB85000D3EE7 /* GraphView.swift */,
 				20CB002524C86343000FCD51 /* InfoCards.swift */,
 				20E39A2524BCE40E004729C6 /* Settings.swift */,
 				20AD7DEE24BB46C0002733A4 /* Report.swift */,
@@ -235,7 +230,6 @@
 				20E39A2324BCBE20004729C6 /* ReportList.swift */,
 				20853B6924BB964B00FD0BF1 /* ReportDetail.swift */,
 				20198F1724BF5913001442C8 /* ReportCard.swift */,
-				20AD7DF224BB5B98002733A4 /* ReportRow.swift */,
 			);
 			name = ReportList;
 			sourceTree = "<group>";
@@ -259,10 +253,7 @@
 			name = HealthMonitor;
 			packageProductDependencies = (
 				20853B7024BCA45E00FD0BF1 /* SwiftUICharts */,
-				207C607224BDDD9C00A6C490 /* SwiftUIX */,
-				207C607524BDDF9B00A6C490 /* SwiftUIPager */,
 				20198F0A24BE2CA9001442C8 /* QGrid */,
-				20198F1424BF2195001442C8 /* Introspect */,
 			);
 			productName = HealthMonitor;
 			productReference = 20AD7DB824BB45A7002733A4 /* HealthMonitor.app */;
@@ -339,10 +330,7 @@
 			mainGroup = 20AD7DAF24BB45A7002733A4;
 			packageReferences = (
 				20853B6F24BCA45E00FD0BF1 /* XCRemoteSwiftPackageReference "ChartView" */,
-				207C607124BDDD9C00A6C490 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
-				207C607424BDDF9B00A6C490 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 				20198F0924BE2CA9001442C8 /* XCRemoteSwiftPackageReference "QGrid" */,
-				20198F1324BF2195001442C8 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 20AD7DB924BB45A7002733A4 /* Products */;
 			projectDirPath = "";
@@ -389,7 +377,6 @@
 			files = (
 				20198F0824BE1A21001442C8 /* CalendarView.swift in Sources */,
 				20198F1224BF1E4F001442C8 /* DateExtension.swift in Sources */,
-				20AD7DF324BB5B98002733A4 /* ReportRow.swift in Sources */,
 				20CB002624C86343000FCD51 /* InfoCards.swift in Sources */,
 				20AD7DC124BB45A7002733A4 /* HealthMonitor.xcdatamodeld in Sources */,
 				20AD7DEF24BB46C0002733A4 /* Report.swift in Sources */,
@@ -400,6 +387,7 @@
 				20AD7DC324BB45A7002733A4 /* ContentView.swift in Sources */,
 				20198F1824BF5913001442C8 /* ReportCard.swift in Sources */,
 				20E39A2424BCBE20004729C6 /* ReportList.swift in Sources */,
+				20985FE224C8BB85000D3EE7 /* GraphView.swift in Sources */,
 				20198F1024BF1D84001442C8 /* CircleCell.swift in Sources */,
 				20AD7DBE24BB45A7002733A4 /* SceneDelegate.swift in Sources */,
 				20AD7DF124BB48DA002733A4 /* AddReport.swift in Sources */,
@@ -743,30 +731,6 @@
 				minimumVersion = 0.1.4;
 			};
 		};
-		20198F1324BF2195001442C8 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/timbersoftware/SwiftUI-Introspect.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
-			};
-		};
-		207C607124BDDD9C00A6C490 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		207C607424BDDF9B00A6C490 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.8.0;
-			};
-		};
 		20853B6F24BCA45E00FD0BF1 /* XCRemoteSwiftPackageReference "ChartView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppPear/ChartView";
@@ -782,21 +746,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 20198F0924BE2CA9001442C8 /* XCRemoteSwiftPackageReference "QGrid" */;
 			productName = QGrid;
-		};
-		20198F1424BF2195001442C8 /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 20198F1324BF2195001442C8 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
-		};
-		207C607224BDDD9C00A6C490 /* SwiftUIX */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 207C607124BDDD9C00A6C490 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
-			productName = SwiftUIX;
-		};
-		207C607524BDDF9B00A6C490 /* SwiftUIPager */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 207C607424BDDF9B00A6C490 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
-			productName = SwiftUIPager;
 		};
 		20853B7024BCA45E00FD0BF1 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;

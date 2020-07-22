@@ -11,8 +11,9 @@ import SwiftUI
 struct InfoCards: View {
     @Environment(\.colorScheme) var colorScheme
     
-    var avgTemp = 38.6
-    var avgWeight = 38.6
+    
+    var avgTemp : Double
+    var avgWeight : Double
     
     var body: some View {
         ScrollView(.horizontal){
@@ -57,7 +58,6 @@ struct InfoCards: View {
                                     .font(.caption)
                                     .offset(x:10)
                             }.offset(x:60 )
-                            
                         }
                         .layoutPriority(100)
                         Spacer()
@@ -113,14 +113,9 @@ struct InfoCards: View {
                 .background(colorScheme == .dark ? Color.black : Color.white)
                 .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                 .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
-                
             }.padding()
         }
     }
 }
 
-struct InfoCards_Previews: PreviewProvider {
-    static var previews: some View {
-        InfoCards()
-    }
-}
+

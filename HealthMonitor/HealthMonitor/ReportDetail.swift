@@ -112,6 +112,7 @@ struct ReportDetail: View {
                     }).padding()
             }
         }
+        .padding(.horizontal)
         .background(Color.gray.opacity(0))
         .cornerRadius(10)
     }

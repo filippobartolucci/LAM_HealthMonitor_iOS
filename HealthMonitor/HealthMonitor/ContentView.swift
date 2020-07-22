@@ -15,9 +15,12 @@ struct ContentView: View {
     // Sheet
     @State var addingReport = false
     @State var showSheet = false
+    @State var addToday = true
+    @State var addDate = Date()
+    
     
     @State var reports = reportExample()
-    @State var days = Date.dates(from: Date().addingTimeInterval(-(60*60*24*10)), to: Date())
+    @State var days = Date.dates(from: Date().addingTimeInterval(-(60*60*24*9)), to: Date())
     
     var body: some View {
         NavigationView {
@@ -31,14 +34,22 @@ struct ContentView: View {
                     }
                 }else{
                     Form{
+                        // Calendar
                         Section(header: Text("Calendar")){
-                            // Linear Calendar
                             ScrollView(.horizontal) {
                                 HStack(spacing: 10) {
                                     ForEach(days.reversed()) { day in
                                         Group{
-                                            CircleCell(date : day, days: self.days, reports: self.$reports, report : Report(date : Date(), temperature: 36.7, weight: 60))
-                                                .animation(.easeInOut)
+                                            Button(action: {
+                                                self.addToday = false
+                                                self.addDate = day
+                                                self.addingReport = true
+                                                self.showSheet.toggle()
+                                            }, label: {
+                                                CircleCell(date : day, days: self.days, reports: self.$reports, report : Report(date : Date(), temperature: 36.7, weight: 60))
+                                                    .animation(.easeInOut)
+                                            })
+                                            
                                         }
                                     }
                                 }.padding()
@@ -47,22 +58,22 @@ struct ContentView: View {
                             .offset(x : -20)
                         }
                         
-                        Section(header: Text("Info")){
+                        // Dashboard
+                        Section(header: Text("Dashboard")){
                             // Dashboard
-                            InfoCards()
+                            InfoCards(avgTemp: 36.5, avgWeight: 20.0)
                                 .frame(width:UIScreen.main.bounds.size.width)
                                 .offset(x:-15)
-                                .animation(.easeInOut)
+                            NavigationLink(destination: GraphView()) {
+                                Text("Show graphs")
+                            }
                         }
                         
-                        
+                        // Reports
                         Section(header: Text("Last report")){
                             NavigationLink(destination: ReportDetail(reports: self.$reports, report : reports.last!)) {
                                 ReportCard(report : reports.last!).padding(.vertical)
                             }
-                        }
-                        
-                        Section{
                             NavigationLink(destination: ReportList(reports: self.$reports)) {
                                 Text("Show all reports")
                             }
@@ -76,13 +87,18 @@ struct ContentView: View {
                     self.addingReport = false
                     self.showSheet.toggle()
                 }) {Image(systemName: "gear")},trailing:Button(action: {
+                    self.addToday = true
                     self.addingReport = true
                     self.showSheet.toggle()
                 }) {Image(systemName: "plus")})
                 
                 .sheet(isPresented: $showSheet) {
                     if (self.addingReport){
-                        AddReport(addingReport: self.$showSheet, reports: self.$reports)
+                        if (self.addToday){
+                            AddReport(addingReport: self.$showSheet, reports: self.$reports, date: Date())
+                        }else{
+                            AddReport(addingReport: self.$showSheet, reports: self.$reports, date: self.addDate)
+                        }
                     }else {
                         Settings()
                     }
@@ -100,18 +116,10 @@ struct ContentView: View {
     }
     
     static func reportExample() -> [Report] {
-        let r1 = Report(date : Date(timeIntervalSince1970: 1256535641), temperature: 37.5, weight: 60)
-        let r2 = Report(date : Date(timeIntervalSince1970: 1299984641), temperature: 36.0, weight: 60)
+        let r1 = Report(date : Date().dayBefore.dayBefore.dayBefore, temperature: 37.5, weight: 60)
+        let r2 = Report(date : Date().dayBefore, temperature: 36.0, weight: 60)
         let r3 = Report(date : Date(), temperature: 36.7, weight: 60)
         return [r1, r2, r3]
-    }
-    
-    private func createTemperatureArray(reports : [Report]) -> [Double] {
-        var array = [Double]()
-        for report in reports{
-            array.append(Double(report.temperature))
-        }
-        return array
     }
 }
 

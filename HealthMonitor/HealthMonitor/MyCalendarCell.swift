@@ -26,7 +26,6 @@ struct MyCalendarCell: View {
                         .frame(height: 30)
                     (Text(String(day.get(.day))))
                 }
-                
             }else{
                 (Text(String(day.get(.day))))
             }
