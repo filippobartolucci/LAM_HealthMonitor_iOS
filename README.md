@@ -2,4 +2,9 @@
 ---
 Progetto sviluppato per il corso "Laboratorio di Applicazioni Mobili" alla facoltà di Informatica di Bologna
 
-![HealthMonitor](/Screen\ 22/07/2020.png)
+## Author
+---
+**Filippo Bartolucci** filippo.bartolucci2@studio.unibo.it
+
+## License
+Progetto sotto GPLv3 License - vedere LICENSE.md per i dettagli
