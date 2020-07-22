@@ -23,22 +23,22 @@ struct ContentView: View {
         NavigationView {
             VStack{
                 if(self.reports.isEmpty){
+                    // No report saved
                     Button(action: {
                         self.addingReport = true
                         self.showSheet.toggle()}) {
-                        Text("Add first report")
+                            Text("Add first report")
                     }
                 }else{
                     Form{
                         Section(header: Text("Calendar")){
+                            // Linear Calendar
                             ScrollView(.horizontal) {
                                 HStack(spacing: 10) {
                                     ForEach(days.reversed()) { day in
-                                        NavigationLink(destination: ReportDetail(reports: self.$reports, report: self.reports.last!)) {
-                                            Group{
-                                                CircleCell(date : day, days: self.days, reports: self.$reports, report : Report(date : Date(), temperature: 36.7, weight: 60))
-                                                    .animation(.easeInOut)
-                                                                                                }
+                                        Group{
+                                            CircleCell(date : day, days: self.days, reports: self.$reports, report : Report(date : Date(), temperature: 36.7, weight: 60))
+                                                .animation(.easeInOut)
                                         }
                                     }
                                 }.padding()
@@ -47,10 +47,22 @@ struct ContentView: View {
                             .offset(x : -20)
                         }
                         
-                        Section{
-                            NavigationLink(destination: ReportDetail(reports: self.$reports, report: self.reports.last!)) {
-                                Text("Last report")
+                        Section(header: Text("Info")){
+                            // Dashboard
+                            InfoCards()
+                                .frame(width:UIScreen.main.bounds.size.width)
+                                .offset(x:-15)
+                                .animation(.easeInOut)
+                        }
+                        
+                        
+                        Section(header: Text("Last report")){
+                            NavigationLink(destination: ReportDetail(reports: self.$reports, report : reports.last!)) {
+                                ReportCard(report : reports.last!).padding(.vertical)
                             }
+                        }
+                        
+                        Section{
                             NavigationLink(destination: ReportList(reports: self.$reports)) {
                                 Text("Show all reports")
                             }
@@ -58,24 +70,33 @@ struct ContentView: View {
                     }
                 }
             }
-            // MARK: -NavigationBar modifiers
-            .navigationBarTitle(Text("Healt Monitor"), displayMode: .inline)
-            .navigationBarItems( leading: Button(action: {
-                self.addingReport = false
-                self.showSheet.toggle()
-            }) {Image(systemName: "gear")},trailing:Button(action: {
-                self.addingReport = true
-                self.showSheet.toggle()
-            }) {Image(systemName: "plus")})
+                // MARK: -NavigationBar modifiers
+                .navigationBarTitle(Text("Healt Monitor"), displayMode: .inline)
+                .navigationBarItems( leading: Button(action: {
+                    self.addingReport = false
+                    self.showSheet.toggle()
+                }) {Image(systemName: "gear")},trailing:Button(action: {
+                    self.addingReport = true
+                    self.showSheet.toggle()
+                }) {Image(systemName: "plus")})
                 
-            .sheet(isPresented: $showSheet) {
-                if (self.addingReport){
-                    AddReport(addingReport: self.$showSheet, reports: self.$reports)
-                }else {
-                    Settings()
-                }
+                .sheet(isPresented: $showSheet) {
+                    if (self.addingReport){
+                        AddReport(addingReport: self.$showSheet, reports: self.$reports)
+                    }else {
+                        Settings()
+                    }
             }
         }
+    }
+    
+    private func searchReport(d : Date) -> Report? {
+        for report in self.reports{
+            if (report.date == d){
+                return report
+            }
+        }
+        return nil
     }
     
     static func reportExample() -> [Report] {
@@ -97,9 +118,9 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-           ContentView().environment(\.colorScheme, .light)
-           ContentView().environment(\.colorScheme, .dark)
+            ContentView().environment(\.colorScheme, .light)
+            ContentView().environment(\.colorScheme, .dark)
         }
-
+        
     }
 }

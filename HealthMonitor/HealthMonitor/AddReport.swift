@@ -66,8 +66,6 @@ struct AddReport: View {
             }
             .navigationBarTitle("New Report", displayMode: .inline)
             .navigationBarItems(leading:Button(action: {self.presentationMode.wrappedValue.dismiss()}){Text("Cancel")})
-            
-            
         }
     }
     

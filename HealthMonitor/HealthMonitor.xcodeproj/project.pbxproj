@@ -30,6 +30,7 @@
 		20AD7DEF24BB46C0002733A4 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DEE24BB46C0002733A4 /* Report.swift */; };
 		20AD7DF124BB48DA002733A4 /* AddReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DF024BB48DA002733A4 /* AddReport.swift */; };
 		20AD7DF324BB5B98002733A4 /* ReportRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AD7DF224BB5B98002733A4 /* ReportRow.swift */; };
+		20CB002624C86343000FCD51 /* InfoCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CB002524C86343000FCD51 /* InfoCards.swift */; };
 		20E39A2424BCBE20004729C6 /* ReportList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E39A2324BCBE20004729C6 /* ReportList.swift */; };
 		20E39A2624BCE40E004729C6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E39A2524BCE40E004729C6 /* Settings.swift */; };
 /* End PBXBuildFile section */
@@ -90,6 +91,7 @@
 		20AD7DEE24BB46C0002733A4 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		20AD7DF024BB48DA002733A4 /* AddReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReport.swift; sourceTree = "<group>"; };
 		20AD7DF224BB5B98002733A4 /* ReportRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRow.swift; sourceTree = "<group>"; };
+		20CB002524C86343000FCD51 /* InfoCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCards.swift; sourceTree = "<group>"; };
 		20E39A2324BCBE20004729C6 /* ReportList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportList.swift; sourceTree = "<group>"; };
 		20E39A2524BCE40E004729C6 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,8 +189,9 @@
 				20853B6E24BC91DD00FD0BF1 /* Delegate */,
 				20E39A2724BCE417004729C6 /* ReportList */,
 				20198F0E24BE528F001442C8 /* Calendar */,
-				20AD7DC224BB45A7002733A4 /* ContentView.swift */,
 				20AD7DF024BB48DA002733A4 /* AddReport.swift */,
+				20AD7DC224BB45A7002733A4 /* ContentView.swift */,
+				20CB002524C86343000FCD51 /* InfoCards.swift */,
 				20E39A2524BCE40E004729C6 /* Settings.swift */,
 				20AD7DEE24BB46C0002733A4 /* Report.swift */,
 				207C608224BE074300A6C490 /* Localizable.strings */,
@@ -308,7 +311,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = "Filippo Bartolucci";
 				TargetAttributes = {
 					20AD7DB724BB45A7002733A4 = {
@@ -387,6 +390,7 @@
 				20198F0824BE1A21001442C8 /* CalendarView.swift in Sources */,
 				20198F1224BF1E4F001442C8 /* DateExtension.swift in Sources */,
 				20AD7DF324BB5B98002733A4 /* ReportRow.swift in Sources */,
+				20CB002624C86343000FCD51 /* InfoCards.swift in Sources */,
 				20AD7DC124BB45A7002733A4 /* HealthMonitor.xcdatamodeld in Sources */,
 				20AD7DEF24BB46C0002733A4 /* Report.swift in Sources */,
 				20AD7DBC24BB45A7002733A4 /* AppDelegate.swift in Sources */,
@@ -449,6 +453,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -509,6 +514,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -30,31 +30,33 @@ struct CircleCell: View {
     var report : Report?
     
     var body: some View {
-        ZStack {
-            HStack{
-                ZStack{
-                    if (self.date == self.days[self.days.count - 1]){
-                        Circle()
-                            .stroke(Color.blue,lineWidth: 5)
-                            .opacity(1)
-                            .scaledToFit()
+        NavigationLink(destination: ReportDetail(reports: self.$reports, report: self.reports.last!)) {
+            ZStack {
+                HStack{
+                    ZStack{
+                        if (self.date == self.days[self.days.count - 1]){
+                            Circle()
+                                .stroke(Color.blue,lineWidth: 5)
+                                .opacity(1)
+                                .scaledToFit()
 
-                    }else{
-                        Circle()
-                            .stroke(Color.gray,lineWidth: 5)
-                            .opacity(self.calcOpacity(days: self.days, day: self.date))
-                            .scaledToFit()
+                        }else{
+                            Circle()
+                                .stroke(Color.gray,lineWidth: 5)
+                                .opacity(self.calcOpacity(days: self.days, day: self.date))
+                                .scaledToFit()
+                        }
+                        Text(String(self.date.get(.day)))
+                            .foregroundColor(.primary)
+                            .font(.system(size: 20))
+                            .offset(y: 3)
+                        Text(monthName[self.date.get(.month)]!)
+                            .foregroundColor(.primary)
+                            .offset(y:-15)
+                            .font(.system(size: 15))
                     }
-                    Text(String(self.date.get(.day)))
-                        .foregroundColor(.primary)
-                        .font(.system(size: 20))
-                        .offset(y: 3)
-                    Text(monthName[self.date.get(.month)]!)
-                        .foregroundColor(.primary)
-                        .offset(y:-15)
-                        .font(.system(size: 15))
+                    .layoutPriority(100)
                 }
-                .layoutPriority(100)
             }
         }
 

@@ -9,47 +9,110 @@
 import SwiftUI
 
 struct ReportDetail: View {
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @State var showSheet = false
+    @Environment(\.presentationMode) var presentationMode
+    @State var editReport = false
     @Binding var reports: [Report]
     var report : Report
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
+
+    
+    private func date2string (d : Date) -> String{
+        return String(d.get(.day)) + "/" + String(d.get(.month)) + "/" + String(d.get(.year))
+    }
     
     var body: some View {
-        
-        List{
-            Section(header: Text("Report values")){
-                Text(String(self.report.temperature))
-                Text(String(self.report.weight))
-            }
-                
-            Section(header: Text("Note")){
-                Text(String(self.report.note))
-            }
-                    
-            Section{
-                Button(action: {
-                    self.showSheet.toggle()
-                }) {
-                    Text("Delete this report")
-                        .foregroundColor(.red)
+        VStack {
+            HStack {
+                VStack(alignment: .leading) {
+                    HStack{
+                        Text(date2string(d: report.date))
+                            .foregroundColor(.secondary)
+                        Image(systemName: "calendar").foregroundColor(.gray)
+                    }
+                    Divider()
+                    HStack{
+                        Text("Temperature:")
+                            .bold()
+                            .foregroundColor(.primary)
+                            .lineLimit(3)
+                        Spacer()
+                        Text(String(report.temperature)+"C").foregroundColor(.primary)
+                        if (report.temperature >= 37.5){
+                            Image(systemName: "flame").foregroundColor(.red)
+                        }else{
+                            Image(systemName: "snow").foregroundColor(.blue)
+                        }
+                    }
+                    Text("Importance: " + String(report.temperatureImportance) + "/5")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Divider()
+                    HStack{
+                        Text("Weight:")
+                            .bold()
+                            .foregroundColor(.primary)
+                            .lineLimit(3)
+                        Spacer()
+                        Text(String(report.weight)+"KG").foregroundColor(.primary)
+                        Image(systemName: "person").foregroundColor(.green)
+                    }
+                    Text("Importance: " + String(report.weightImportance) + "/5")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Divider()
+                    HStack{
+                        Text("Note:")
+                            .bold()
+                            .foregroundColor(.primary)
+                            .lineLimit(3)
+                        Spacer()
+                        Image(systemName: "doc.text").foregroundColor(.yellow)
+                    }
+                    Text(report.note)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
                 }
+                .layoutPriority(100)
+                
+                Spacer()
+            }
+            .padding()
+            Spacer()
+            HStack{
+                Button(action: {
+                    self.editReport.toggle()
+                }, label: {
+                    Text("Edit Report")
+                        .foregroundColor(Color.white)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.9), lineWidth: 1)
+                        )
+                        .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                        .cornerRadius(15.0)
+                    }).padding()
+                
+                Button(action: {
+                    if let index = self.reports.firstIndex(of: self.report) {
+                        self.reports.remove(at: index)
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                }, label: {
+                    Text("Delete Report")
+                        .foregroundColor(Color.white)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.9), lineWidth: 1)
+                        )
+                        .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.red]), startPoint: .leading, endPoint: .trailing))
+                        .cornerRadius(15.0)
+                    }).padding()
             }
         }
-        .actionSheet(isPresented: $showSheet) {
-            ActionSheet(title: Text("Delete report"),message: Text("Are you sure you want to delete this report?"), buttons: [
-                .default(Text("Yes").foregroundColor(.red)) { self.deleteReport() },
-                .cancel()
-            ])
-        }
-    }
-    
-    
-    private func deleteReport(){
-        if let index = self.reports.firstIndex(of: self.report) {
-            self.reports.remove(at: index)
-            self.mode.wrappedValue.dismiss()
-        }
+        .background(Color.gray.opacity(0))
+        .cornerRadius(10)
     }
 }
-
