@@ -12,14 +12,16 @@ import SwiftUICharts
 
 struct ContentView: View {
     
-    // Sheet
+    // Boolean var for modal
     @State var addingReport = false
     @State var showSheet = false
     @State var addToday = true
     @State var addDate = Date()
     
-    
+    // Report data
     @State var reports = reportExample()
+    
+    // Calendar days
     @State var days = Date.dates(from: Date().addingTimeInterval(-(60*60*24*9)), to: Date())
     
     var body: some View {
@@ -39,32 +41,30 @@ struct ContentView: View {
                             ScrollView(.horizontal) {
                                 HStack(spacing: 10) {
                                     ForEach(days.reversed()) { day in
-                                        Group{
-                                            Button(action: {
-                                                self.addToday = false
-                                                self.addDate = day
-                                                self.addingReport = true
-                                                self.showSheet.toggle()
-                                            }, label: {
-                                                CircleCell(date : day, days: self.days, reports: self.$reports, report : Report(date : Date(), temperature: 36.7, weight: 60))
-                                                    .animation(.easeInOut)
-                                            })
-                                            
-                                        }
+                                        Button(action: {
+                                            // Add report if there are no report
+                                            self.addToday = false
+                                            self.addDate = day
+                                            self.addingReport = true
+                                            self.showSheet.toggle()
+                                        }, label: {
+                                            // If there is a report, open report detail
+                                            CircleCell(date : day, reports: self.$reports)
+                                        })
                                     }
                                 }.padding()
                             }
                             .frame(width:UIScreen.main.bounds.size.width ,height: 100)
-                            .offset(x : -20)
+                            .offset(x : -15)
                         }
                         
                         // Dashboard
                         Section(header: Text("Dashboard")){
                             // Dashboard
-                            InfoCards(avgTemp: 36.5, avgWeight: 20.0)
+                            InfoCards(reports: self.reports)
                                 .frame(width:UIScreen.main.bounds.size.width)
                                 .offset(x:-15)
-                            NavigationLink(destination: GraphView()) {
+                            NavigationLink(destination: GraphView(reports: self.reports)) {
                                 Text("Show graphs")
                             }
                         }
@@ -92,7 +92,9 @@ struct ContentView: View {
                     self.showSheet.toggle()
                 }) {Image(systemName: "plus")})
                 
+                // Sheet modal modifiers
                 .sheet(isPresented: $showSheet) {
+                    // Check which modal to open
                     if (self.addingReport){
                         if (self.addToday){
                             AddReport(addingReport: self.$showSheet, reports: self.$reports, date: Date())
@@ -106,19 +108,10 @@ struct ContentView: View {
         }
     }
     
-    private func searchReport(d : Date) -> Report? {
-        for report in self.reports{
-            if (report.date == d){
-                return report
-            }
-        }
-        return nil
-    }
-    
     static func reportExample() -> [Report] {
-        let r1 = Report(date : Date().dayBefore.dayBefore.dayBefore, temperature: 37.5, weight: 60)
-        let r2 = Report(date : Date().dayBefore, temperature: 36.0, weight: 60)
-        let r3 = Report(date : Date(), temperature: 36.7, weight: 60)
+        let r1 = Report(date : Date().dayBefore.dayBefore.dayBefore, temperature: 37.5, weight: 60,heartRate : 68)
+        let r2 = Report(date : Date().dayBefore, temperature: 36.0, weight: 60,heartRate : 70)
+        let r3 = Report(date : Date(), temperature: 36.7, weight: 60,heartRate : 78)
         return [r1, r2, r3]
     }
 }

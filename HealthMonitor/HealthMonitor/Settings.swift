@@ -35,7 +35,6 @@ struct Settings: View {
                     Text("Prova")
                 }
             }
-            
         
             .navigationBarTitle("Settings", displayMode: .inline)
             .navigationBarItems(leading:Button(action: {self.presentationMode.wrappedValue.dismiss()}){Text("Close")})

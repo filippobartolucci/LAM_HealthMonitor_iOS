@@ -18,11 +18,13 @@ struct AddReport: View {
     @State var temperature = ""
     @State var date : Date 
     @State var weight = ""
+    @State var heartRate = ""
     @State var text = ""
     
     // MARK: -Report Importance
     @State var tempImportance = 3
     @State var weightImportance = 3
+    @State var heartImportance = 3
     
     
     
@@ -31,8 +33,9 @@ struct AddReport: View {
         NavigationView {
             Form {
                 Section(header: Text("Temperature").bold()) {
-                    TextField("Insert here", text: $temperature)
+                    TextField("Value between 33 and 43", text: $temperature)
                         .keyboardType(.decimalPad)
+                    
                     
                     VStack {
                         Stepper("Importance: \(tempImportance)", value: $tempImportance, in: 1...5)
@@ -47,13 +50,21 @@ struct AddReport: View {
                     }
                 }
                 
+                Section(header: Text("Hear Rate").bold()) {
+                    TextField("Insert here", text: $heartRate)
+                        .keyboardType(.numberPad)
+                    VStack {
+                        Stepper("Importance: \(heartImportance)", value: $heartImportance, in: 1...5)
+                    }
+                }
+                
                 Section(header: Text("Note").bold()) {
                     TextField("Insert here", text: $text)
                 }
                 
                 if (self.checkValidForm()) {
                     Button(action: {
-                        let newReport = Report(date: self.date, temperature: (Float(self.temperature) ?? 0),temperatureImportance: self.tempImportance, weight: (Float(self.weight) ?? 0.0), weightImportance: self.weightImportance,note: (self.text) )
+                        let newReport = Report(date: self.date, temperature: (Float(self.temperature)!),temperatureImportance: self.tempImportance, weight: (Float(self.weight)!), weightImportance: self.weightImportance,note: (self.text) )
                         self.reports.append(newReport)
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
@@ -70,11 +81,16 @@ struct AddReport: View {
     private func checkValidForm() -> Bool {
         if (!self.temperature.isEmpty){
             let temp = Float(self.temperature) ?? 0
-            if (temp > Float(34.0) && temp < Float(42)){
-                return true
+            if (temp > Float(33.0) && temp < Float(43)){
+                if ((Float(self.weight) ?? 0.0) > 0.0 ){
+                    return true
+                }
             }
         }
         return false
     }
     
+    private func add2Reports(r : Report, reports : [Report]){
+    
+    }
 }

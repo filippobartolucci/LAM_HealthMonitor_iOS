@@ -11,77 +11,25 @@ import SwiftUI
 
 struct CircleCell: View {
     let date : Date
-    let days : [Date]
-    let monthName: [Int : String] = [
-        1 : "Jan",
-        2 : "Feb",
-        3 : "Mar",
-        4 : "Apr",
-        5 : "May",
-        6 : "Jun",
-        7 : "Jul",
-        8 : "Aug",
-        9 : "Set",
-        10 : "Oct",
-        11 : "Nov",
-        12 : "Dec",
-    ]
     @Binding var reports : [Report]
-    var report : Report?
     
     var body: some View {
         Group{
             ZStack {
                 HStack{
                     if (self.searchReport(d: self.date) == -1){
-                        
                             ZStack{
-                                if (self.date == self.days[self.days.count - 1]){
-                                    Circle()
-                                        .stroke(Color.blue,lineWidth: 5)
-                                        .opacity(1)
-                                        .scaledToFit()
-                                    
-                                }else{
-                                    Circle()
-                                        .stroke(Color.gray,lineWidth: 5)
-                                        .opacity(self.calcOpacity(days: self.days, day: self.date))
-                                        .scaledToFit()
-                                }
-                                Text(String(self.date.get(.day)))
-                                    .foregroundColor(.primary)
-                                    .font(.system(size: 20))
-                                    .offset(y: 3)
-                                Text(monthName[self.date.get(.month)]!)
-                                    .foregroundColor(.primary)
-                                    .offset(y:-15)
-                                    .font(.system(size: 15))
+                                cellBackground()
+                                cellText(date: self.date)
                             }
                             .layoutPriority(100)
                         
                     }else{
                         NavigationLink(destination: ReportDetail(reports: self.$reports, report : reports[self.searchReport(d: self.date)])) {
                             ZStack{
-                                if (self.date == self.days[self.days.count - 1]){
-                                    Circle()
-                                        .stroke(Color.blue,lineWidth: 5)
-                                        .opacity(1)
-                                        .scaledToFit()
-                                    
-                                }else{
-                                    Circle()
-                                        .stroke(Color.gray,lineWidth: 5)
-                                        .opacity(self.calcOpacity(days: self.days, day: self.date))
-                                        .scaledToFit()
-                                }
-                                Text(String(self.date.get(.day)))
-                                    .foregroundColor(.primary)
-                                    .font(.system(size: 20))
-                                    .offset(y: 3)
-                                Text(monthName[self.date.get(.month)]!)
-                                    .foregroundColor(.primary)
-                                    .offset(y:-15)
-                                    .font(.system(size: 15))
+                                cellBackground()
+                                cellText(date: self.date)
+                                // Red dot to notify that there is a report
                                 Text(" ")
                                     .frame(width: 7, height: 7)
                                     .background(Color(.red))
@@ -96,11 +44,6 @@ struct CircleCell: View {
                 }
             }
         }
-    }
-    
-    private func calcOpacity(days : [Date], day: Date) -> Double{
-        let index = days.firstIndex(of: day)!
-        return (Double(index+1))/Double(days.count)
     }
     
     private func searchReport(d : Date) -> Int{
@@ -119,6 +62,47 @@ struct CircleCell: View {
             return true
         default:
             return false
+        }
+    }
+}
+
+
+struct cellBackground : View {
+    @Environment(\.colorScheme) var colorScheme
+    var body : some View{
+        Text("").frame(width: 70, height: 70)
+        .background(colorScheme == .dark ? Color.black : Color.white)
+        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
+    }
+}
+
+struct cellText : View {
+    var date : Date
+    let monthName: [Int : String] = [
+        1 : "Jan",
+        2 : "Feb",
+        3 : "Mar",
+        4 : "Apr",
+        5 : "May",
+        6 : "Jun",
+        7 : "Jul",
+        8 : "Aug",
+        9 : "Set",
+        10 : "Oct",
+        11 : "Nov",
+        12 : "Dec",
+    ]
+    var body : some View {
+        Group{
+            Text(String(self.date.get(.day)))
+                .foregroundColor(.primary)
+                .font(.system(size: 20))
+                .offset(y: 3)
+            Text(monthName[self.date.get(.month)]!)
+                .foregroundColor(.primary)
+                .offset(y:-15)
+                .font(.system(size: 15))
         }
     }
 }

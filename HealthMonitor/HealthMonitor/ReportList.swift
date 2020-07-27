@@ -19,6 +19,7 @@ struct ReportList: View {
                     Section{
                         NavigationLink(destination: ReportDetail(reports: self.$reports, report : report)) {
                             ReportCard(report : report).padding(.vertical)
+                                // Haptic touch menu
                                 .contextMenu {
                                     Button(action: {
                                         self.deleteReport(report: report)

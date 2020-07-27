@@ -15,5 +15,7 @@ struct Report: Hashable, Codable, Identifiable{
     var temperatureImportance = 3
     var weight : Float
     var weightImportance = 3
+    var heartRate = 0
+    var heartRateImportance = 3
     var note = ""
 }
