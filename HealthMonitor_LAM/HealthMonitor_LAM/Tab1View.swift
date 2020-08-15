@@ -13,22 +13,26 @@ struct Tab1View: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     var reports: FetchedResults<Report>
     
-    // Modal
-    @State var addReport : Bool = false
     
     var body: some View {
         NavigationView{
             ScrollView{
-                
-                
-                
                 Spacer()
-                Section(header: HStack{Text("Last report values");Spacer()}.frame(maxWidth : widthBound)){
+                Section(header: HStack{Text("Last report values");Spacer();Text(reports.first!.date!.stringify())}.frame(maxWidth : widthBound)){
                     // MARK: -Temperature
                     boxView(content: AnyView(
                         HStack{
-                            Image(systemName: "snow").foregroundColor(Color("lightBlue"))
-                            Text("Temperature").foregroundColor(Color("lightBlue"))
+                            if (reports.first!.temperature>37.5){
+                                Image(systemName: "flame").foregroundColor(Color(.red))
+                                VStack(alignment: .leading){
+                                    Text("Temperature").foregroundColor(Color(.red))
+                                }
+                            }else{
+                                Image(systemName: "snow").foregroundColor(Color("lightBlue"))
+                                VStack(alignment: .leading){
+                                    Text("Temperature").foregroundColor(Color("lightBlue"))
+                                }
+                            }
                             Spacer()
                             Text(String(reports.first!.temperature)).font(.title)
                             Text("°C").font(.caption)
@@ -87,9 +91,7 @@ struct Tab1View: View {
                     
                     
                     // MARK: -Add Report
-                    Button(action: {
-                        self.addReport.toggle()
-                    }) {
+                    NavigationLink(destination: addReportView(reports: self.reports)) {
                         boxView(content: AnyView(
                             HStack{
                                 Image(systemName: "plus.square")
@@ -113,9 +115,7 @@ struct Tab1View: View {
                         )).padding(.horizontal)
                     }
                     .navigationBarTitle(Text("Summary"), displayMode: .automatic)
-                    .sheet(isPresented: $addReport) {
-                        addReportView(reports: self.reports).environment(\.managedObjectContext, self.managedObjectContext)
-                    }.padding(.bottom)
+                    .padding(.bottom)
                 }
             }
         }

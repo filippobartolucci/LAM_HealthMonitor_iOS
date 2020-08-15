@@ -21,7 +21,6 @@ struct Tab1NoReportView: View {
                 
 
                 Section(){
-                    // MARK: -Heart Rate
                     boxView(content: AnyView(
                         HStack{
                             Group{
@@ -34,16 +33,14 @@ struct Tab1NoReportView: View {
                 
                 Group{
                     // MARK: -Add Report
-                    Button(action: {
-                        self.addReport.toggle()
-                    }) {
+                    NavigationLink(destination: addReportView(reports: self.reports)) {
                         boxView(content: AnyView(
                             HStack{
                                 Image(systemName: "plus.square")
                                 Text("Add Report")
                                 Spacer()
                                 Image(systemName: "arrow.right").accentColor(Color(.gray))
-                            }.padding(.horizontal).frame(minWidth : UIScreen.main.bounds.size.width*0.9,maxWidth:UIScreen.main.bounds.size.width*0.9, minHeight: buttonHeight)
+                            }.padding(.horizontal).frame(minWidth : widthBound,maxWidth:widthBound, minHeight: buttonHeight)
                         ))
                     }.accentColor(Color("heartRed")).padding(.horizontal)
                     
@@ -59,9 +56,7 @@ struct Tab1NoReportView: View {
                         )).padding(.horizontal)
                     }
                     .navigationBarTitle(Text("Summary"), displayMode: .automatic)
-                    .sheet(isPresented: $addReport) {
-                        addReportView(reports: self.reports).environment(\.managedObjectContext, self.managedObjectContext)
-                    }.padding(.bottom)
+                    .padding(.bottom)
                 }
             }
         }

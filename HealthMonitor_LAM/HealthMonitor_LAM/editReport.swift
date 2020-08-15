@@ -1,31 +1,53 @@
 //
-//  addReport.swift
+//  editReport.swift
 //  HealthMonitor_LAM
 //
-//  Created by Filippo Bartolucci on 12/08/2020.
+//  Created by Filippo Bartolucci on 14/08/2020.
 //  Copyright © 2020 Filippo Bartolucci. All rights reserved.
 //
 
 import SwiftUI
+import CoreData
 
-struct addReportView: View {
-    // Modal
+struct editReport: View {
+    @State var report : Report
     @Environment(\.presentationMode) private var presentationMode
     
-    
-    
     // MARK: -Report Values
-    @State var temperature = ""
-    @State var date = Date()
-    @State var weight = ""
-    @State var heartRate = ""
-    @State var text = ""
+    @State var temperature : String
+    @State var date : Date
+    @State var weight : String
+    @State var heartRate : String
+    @State var text : String
     
     
     // MARK: -Report Importance
-    @State var tempImportance = 3
-    @State var weightImportance = 3
-    @State var heartImportance = 3
+    @State var tempImportance : Int16
+    @State var weightImportance : Int16
+    @State var heartImportance : Int16
+    
+    // MARK: -CoreData
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
+    func saveContext() {
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Error saving managed object context: \(error)")
+        }
+    }
+    
+    func updateReport(){
+        self.report.temperature = Float(self.temperature)!
+        self.report.weight = Float(self.weight)!
+        self.report.heartRate = Int16(self.heartRate)!
+        self.report.note = self.text
+        self.report.temperatureImportance = Int16(self.tempImportance)
+        self.report.weightImportance = Int16(self.weightImportance)
+        self.report.heartRateImportance = Int16(self.heartImportance)
+        
+        saveContext()
+    }
     
     // Enable "Add Report" button
     func checkForm() -> Bool {
@@ -43,94 +65,9 @@ struct addReportView: View {
         return false
     }
     
-    // CoreData Management
-    @Environment(\.managedObjectContext) var managedObjectContext
-    var reports: FetchedResults<Report>
-    
-    func addReport() {
-        for report in reports{
-            if (compareDate(date1: report.date!, date2: self.date)){
-                print("Updating report...")
-                updateReport(report: report)
-                return
-            }
-        }
-        print("Creating new report...")
-        createNewReport()
-        return
-    }
-    
-    func createNewReport(){
-        let r = Report(context: managedObjectContext)
-        
-        r.id = UUID()
-        r.date = self.date
-        
-        r.temperature = Float(self.temperature)!
-        r.temperatureImportance = Int16(self.tempImportance)
-        
-        
-        r.weight = Float(self.weight)!
-        r.weightImportance = Int16(self.weightImportance)
-        
-        r.heartRate = Int16(self.heartRate)!
-        r.heartRateImportance = Int16(self.heartImportance)
-        
-        r.note = self.text
-        
-        saveContext()
-    }
-    
-    func updateReport(report:Report){
-        // Temperature
-        report.temperature = (report.temperature + Float(self.temperature)!)/2
-        if(report.temperatureImportance <= self.tempImportance){
-            report.temperatureImportance = Int16(self.tempImportance)
-        }
-        // Weight
-        report.weight = (report.weight + Float(self.weight)!)/2
-        if(report.weightImportance <= self.weightImportance){
-            report.weightImportance = Int16(self.weightImportance)
-        }
-        // HeartRate
-        report.heartRate = (report.heartRate + Int16(self.heartRate)!)/2
-        if(report.heartRateImportance <= self.heartImportance){
-            report.heartRateImportance = Int16(self.weightImportance)
-        }
-        saveContext()
-    }
-    
-    func saveContext() {
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print("Error saving managed object context: \(error)")
-        }
-    }
     
     var body: some View {
         ScrollView{
-            Spacer()
-            
-            // MARK: -Date
-            
-            
-            boxView(content: AnyView(
-                VStack{
-                    NavigationLink(destination: FormView(content: AnyView(
-                        VStack{
-                            DatePicker("Date", selection: $date, in: ...Date(),displayedComponents: .date).labelsHidden().padding()
-                        }
-                    )).padding(.horizontal)){
-                        HStack{
-                            Text("Date: " + date.stringify())
-                            Spacer()
-                            Image(systemName: "arrow.right")
-                        }.padding(.horizontal)
-                    }
-                }.frame(minHeight:buttonHeight)
-            )).padding(.vertical)
-            
             // MARK: -Temperature
             boxView(content: AnyView(
                 VStack{
@@ -232,24 +169,16 @@ struct addReportView: View {
             
             boxView(content: AnyView(
                 Button(action: {
-                    self.addReport()
+                    self.updateReport()
+                    self.presentationMode.wrappedValue.dismiss()
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
-                    Text("Add Report").multilineTextAlignment(.leading)
+                    Text("Update report").multilineTextAlignment(.leading)
                 }.disabled(!self.checkForm()).frame(minHeight:buttonHeight)
             )).padding(.vertical).accentColor(Color(.red))
-        }.accentColor(Color("text")).navigationBarTitle("New Report")
+            
+        }.navigationBarTitle("Edit report").accentColor(Color("text"))
     }
 }
 
 
-
-struct FormView: View {
-    var content : AnyView
-    
-    var body : some View {
-        Group{
-            self.content
-        }
-    }
-}

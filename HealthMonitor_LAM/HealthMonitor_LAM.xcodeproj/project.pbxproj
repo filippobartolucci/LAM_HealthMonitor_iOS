@@ -29,6 +29,7 @@
 		20FA191624E547CD004EA05D /* ReportDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FA191524E547CD004EA05D /* ReportDetail.swift */; };
 		20FA191824E56EEE004EA05D /* avgReportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FA191724E56EEE004EA05D /* avgReportCard.swift */; };
 		20FA191A24E5809D004EA05D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FA191924E5809D004EA05D /* Utils.swift */; };
+		20FA191C24E6B0AD004EA05D /* editReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FA191B24E6B0AD004EA05D /* editReport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		20FA191524E547CD004EA05D /* ReportDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetail.swift; sourceTree = "<group>"; };
 		20FA191724E56EEE004EA05D /* avgReportCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = avgReportCard.swift; sourceTree = "<group>"; };
 		20FA191924E5809D004EA05D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		20FA191B24E6B0AD004EA05D /* editReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editReport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 			children = (
 				20FA190824E498FD004EA05D /* addReportView.swift */,
 				20FA191724E56EEE004EA05D /* avgReportCard.swift */,
+				20FA191B24E6B0AD004EA05D /* editReport.swift */,
 				20FA191524E547CD004EA05D /* ReportDetail.swift */,
 				20FA190E24E53FE7004EA05D /* ReportList.swift */,
 				20FA191324E542B4004EA05D /* ReportRow.swift */,
@@ -361,6 +364,7 @@
 				20FA190B24E4A2D9004EA05D /* SettingsView.swift in Sources */,
 				20F28D7524E43131000EBE35 /* SceneDelegate.swift in Sources */,
 				20FA190724E4945B004EA05D /* Tab1NoReportView.swift in Sources */,
+				20FA191C24E6B0AD004EA05D /* editReport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

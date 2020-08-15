@@ -9,11 +9,15 @@
 import SwiftUI
 
 struct ReportDetail: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @State var reports: FetchedResults<Report>
     var report : Report
+    
     
     var body: some View {
         ScrollView{
             VStack{
+                Spacer().padding().frame(minHeight:buttonHeight)
                 // MARK: -Temperature
                 boxView(content: AnyView(
                     HStack{
@@ -34,7 +38,7 @@ struct ReportDetail: View {
                         Spacer()
                         Text(String(report.temperature)).font(.title)
                         Text("°C").font(.caption)
-                    }.padding().frame(minWidth : UIScreen.main.bounds.size.width*0.9,minHeight:55)
+                    }.padding().frame(minWidth : widthBound,minHeight:55)
                 )).padding(.horizontal)
                 
                 
@@ -50,23 +54,23 @@ struct ReportDetail: View {
                         Spacer()
                         Text(String(report.weight)).font(.title)
                         Text("KG").font(.caption)
-                    }.padding().frame(minWidth : UIScreen.main.bounds.size.width*0.9,minHeight:55)
+                    }.padding().frame(minWidth : widthBound,minHeight:55)
                 )).padding(.horizontal)
                 
                 
                 // MARK: -Heart Rate
                 boxView(content: AnyView(
                     HStack{
-                        Image(systemName: "heart.fill").foregroundColor(Color(.red))
+                        Image(systemName: "heart.fill").foregroundColor(Color("red"))
                         VStack(alignment: .leading){
-                            Text("Heart Rate").foregroundColor(Color(.red))
+                            Text("Heart Rate").foregroundColor(Color("red"))
                             Text("Importance: " + String(report.heartRateImportance) + "/5").font(.caption)
                         }
                         
                         Spacer()
                         Text(String(report.heartRate)).font(.title)
                         Text("Bpm").font(.caption)
-                    }.padding().frame(minWidth : UIScreen.main.bounds.size.width*0.9,minHeight:55)
+                    }.padding().frame(minWidth : widthBound,minHeight:55)
                 )).padding(.horizontal)
                 
                 
@@ -90,10 +94,25 @@ struct ReportDetail: View {
                             }
                         }
                         
-                    }.padding().frame(minWidth : UIScreen.main.bounds.size.width*0.9,minHeight:55)
+                    }.padding().frame(minWidth : widthBound,minHeight:55)
                 )).padding(.horizontal)
                 
                 Spacer()
+                
+                Divider().padding(.vertical).frame(minWidth : widthBound)
+                
+                
+                // MARK: -Edit report
+                NavigationLink(destination: editReport(report: self.report, temperature: String(self.report.temperature), date: self.report.date!, weight: String(self.report.weight), heartRate: String(self.report.heartRate), text: self.report.note!, tempImportance: self.report.temperatureImportance, weightImportance: self.report.weightImportance, heartImportance: self.report.heartRateImportance)){
+                    boxView(content: AnyView(
+                        HStack{
+                            Image(systemName: "ellipsis")
+                            Text("Edit Report")
+                            Spacer()
+                            Image(systemName: "arrow.right")
+                        }.accentColor(Color("heartRed")).padding(.horizontal).frame(minWidth : widthBound,maxWidth:widthBound, minHeight: buttonHeight)
+                    )).padding(.horizontal)
+                }
             }
         }
         .navigationBarTitle("Report detail")

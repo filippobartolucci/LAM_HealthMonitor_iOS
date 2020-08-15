@@ -41,16 +41,16 @@ struct Tab2View: View {
     
     var body: some View {
         NavigationView{
-            Group{
+            ScrollView{
                 if (reports.isEmpty){
                     Text("Add your first report")
                 }else{
-                    ScrollView{
+                    Group{
                         Spacer()
                         Section(header: HStack{Text("Average values");Spacer()}.frame(maxWidth : widthBound)){
                             avgReportCard(reports:self.reports)
                         }
-                        Spacer().frame(minHeight:buttonHeight)
+                        Divider().frame(maxWidth:widthBound,minHeight:buttonHeight)
                         Section(header: HStack{Text("Graphs");Spacer()}.frame(maxWidth : widthBound)){
                             boxView(content: AnyView(
                                 LineView(data: self.createTemperatureArray(), title: "Temperature", style: tempStyle()).background(Color("boxBackground")).padding(.horizontal)

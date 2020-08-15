@@ -36,7 +36,7 @@ extension Date: Identifiable {
     
     func stringify() -> String{
         let df = DateFormatter()
-        df.dateFormat = "dd-MM-yyyy"
+        df.dateFormat = "dd/MM/yyyy"
         return df.string(from: self)
     }
     

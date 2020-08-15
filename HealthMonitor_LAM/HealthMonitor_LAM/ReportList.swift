@@ -34,7 +34,7 @@ struct ReportList: View {
         Group{
             List{
                 ForEach(reports, id: \.date) {report in
-                NavigationLink(destination: ReportDetail(report: report)){
+                    NavigationLink(destination: ReportDetail(reports:self.reports, report: report)){
                     ReportRow(report: report)
                 }
               }
