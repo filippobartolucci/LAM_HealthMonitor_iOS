@@ -18,6 +18,7 @@ struct editReport: View {
     @State var date : Date
     @State var weight : String
     @State var heartRate : String
+    @State var glycemia : String
     @State var text : String
     
     
@@ -25,6 +26,7 @@ struct editReport: View {
     @State var tempImportance : Int16
     @State var weightImportance : Int16
     @State var heartImportance : Int16
+    @State var glycemiaImportance : Int16
     
     // MARK: -CoreData
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -41,30 +43,34 @@ struct editReport: View {
         self.report.temperature = Float(self.temperature.replacingOccurrences(of: ",", with: "."))!
         self.report.weight = Float(self.weight.replacingOccurrences(of: ",", with: "."))!
         self.report.heartRate = Int16(self.heartRate)!
+        self.report.glycemia = Int16(self.glycemia)!
         self.report.note = self.text
         self.report.temperatureImportance = Int16(self.tempImportance)
         self.report.weightImportance = Int16(self.weightImportance)
         self.report.heartRateImportance = Int16(self.heartImportance)
+        self.report.glycemiaImportance = Int16(self.glycemiaImportance)
         
         saveContext()
     }
     
-    // Enable "Add Report" button
+    // Enable "Update report" button
    func checkForm() -> Bool {
-        let checkTemp:Float = Float(self.temperature.replacingOccurrences(of: ",", with: ".")) ?? Float(0)
-        print(checkTemp)
-        let checkWeight:Float = Float(self.weight.replacingOccurrences(of: ",", with: ".")) ?? Float(0)
-        let checkHeart:Int = Int(self.heartRate) ?? 0
-        
-        if (checkTemp >= 33.0 && checkTemp <= 44.0){
-            if (checkWeight > 0.0){
-                if (checkHeart >= 20){
-                    return true
-                }
-            }
-        }
-        return false
-    }
+       let checkTemp: Float = Float(self.temperature.replacingOccurrences(of: ",", with: ".")) ?? Float(0)
+       let checkWeight: Float = Float(self.weight.replacingOccurrences(of: ",", with: ".")) ?? Float(0)
+       let checkHeart: Int = Int(self.heartRate) ?? 0
+       let checkGlycemia: Int = Int(self.glycemia) ?? 0
+       
+       if (checkTemp >= 33.0 && checkTemp <= 44.0){
+           if (checkWeight > 0.0){
+               if (checkHeart >= 20){
+                   if (checkGlycemia >= 50){
+                       return true
+                   }
+               }
+           }
+       }
+       return false
+   }
     
     
     var body: some View {
@@ -130,6 +136,29 @@ struct editReport: View {
                     ))){
                         HStack{
                             Text("Heart: " + String(self.heartRate)).multilineTextAlignment(.leading)
+                            Spacer()
+                            Image(systemName: "arrow.right")
+                        }.padding(.horizontal)
+                        
+                    }
+                }.frame(minHeight:buttonHeight)
+            )).padding(.vertical)
+            
+            // MARK: -Glycemia
+            boxView(content: AnyView(
+                VStack{
+                    NavigationLink(destination: FormView(content: AnyView(
+                        VStack{
+                            Form{
+                                TextField("Glycemia value must be > 30", text: $glycemia)
+                                    .keyboardType(.decimalPad)
+                                Stepper("Importance: \(glycemiaImportance)", value: $glycemiaImportance, in: 1...5)
+                            }
+                            Spacer()
+                        }
+                    ))){
+                        HStack{
+                            Text("Glycemia: " + String(self.glycemia)).multilineTextAlignment(.leading)
                             Spacer()
                             Image(systemName: "arrow.right")
                         }.padding(.horizontal)

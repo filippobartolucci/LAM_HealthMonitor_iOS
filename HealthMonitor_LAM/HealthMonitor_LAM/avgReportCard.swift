@@ -53,11 +53,11 @@ struct avgReportCard: View {
                             
                             HStack{
                                 Text(String(avgTemperature(report: self.reports))).font(.system(size: 43))
-                                Text("°C").font(.system(size: 30)).offset(x:-5)
+                                Text("°C").font(.system(size: 27)).offset(x:-5)
                             }.offset(x:10, y:-15)
                             
                             Text("Healthy under 37.5").font(.caption)
-                        }.frame(maxWidth:squareSize,minHeight:squareSize*0.9)
+                        }.frame(maxWidth:squareSize,minHeight:squareSize*0.8)
                     ))
                 }
                 
@@ -81,11 +81,11 @@ struct avgReportCard: View {
                             
                             HStack{
                                 Text(String(avgWeight(report: self.reports))).font(.system(size: 43))
-                                Text("KG").font(.system(size: 29)).offset(x:-5)
+                                Text("KG").font(.system(size: 27)).offset(x:-5)
                             }.offset(x:15, y:-15)
                             
                             Text("Stay fit").font(.caption)
-                        }.frame(maxWidth:squareSize,minHeight:squareSize*0.9)
+                        }.frame(maxWidth:squareSize,minHeight:squareSize*0.8)
                     ))
                 }
             }
@@ -116,11 +116,11 @@ struct avgReportCard: View {
                             }.offset(x:13, y:-15)
                             
                             Text("Stay healthy").font(.caption)
-                        }.frame(maxWidth:squareSize,minHeight:squareSize*0.9)
+                        }.frame(maxWidth:squareSize,minHeight:squareSize*0.8)
                     ))
                 }
                 
-                //MARK: -Report Number
+                //MARK: - Glycemia
                 Group{
                     boxView(content: AnyView(
                         VStack{
@@ -131,22 +131,24 @@ struct avgReportCard: View {
                                         .background(Color(.gray))
                                         .opacity(0.2)
                                         .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-                                    Image(systemName: "doc.text.fill")
+                                    Image(systemName: "g.circle")
                                 }
-                                Text("Reports saved")
+                                Text("Glycemia")
                                     .font(.caption)
                                 Spacer()
-                            }.offset(x : 20, y:0).foregroundColor(Color("orange"))
+                            }.offset(x : 20, y:0).foregroundColor(Color("greenBlue"))
                             
                             HStack{
-                                Text(String(reports.count)).font(.system(size: 43))
-                                Text("  ").font(.system(size: 30)).offset(x:-5)
+                                Text(String(avgGlycemia(report: self.reports))).font(.system(size: 43))
+                                Text("mg/dl").font(.system(size: 30)).offset(x:-5)
                             }.offset(x:15, y:-15)
-                            
-                            Text("Keep track of your healt").font(.caption).offset(y:-5)
-                        }.frame(maxWidth:squareSize,minHeight:squareSize*0.9)
+                            Text("Healthy under 126 mg/dl").font(.caption).offset(y:-5)
+                        }.frame(maxWidth:squareSize,minHeight:squareSize*0.8)
                     ))
                 }
+                
+                
+                
             }
         }.frame(maxWidth: widthBound)
     }
@@ -175,5 +177,16 @@ struct avgReportCard: View {
         }
         return (Int(avg/Double(report.count)))
     }
+    
+    func avgGlycemia(report: FetchedResults<Report>) -> Int {
+        var avg = 0.0
+        for r in report{
+            avg += Double(r.glycemia)
+        }
+        return (Int(avg/Double(report.count)))
+    }
+    
 }
+
+
 

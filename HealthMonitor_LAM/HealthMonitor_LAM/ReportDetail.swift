@@ -74,6 +74,22 @@ struct ReportDetail: View {
                 )).padding(.horizontal)
                 
                 
+                // MARK: -Glycemia
+                boxView(content: AnyView(
+                    HStack{
+                        Image(systemName: "g.circle").foregroundColor(Color("greenBlue"))
+                        VStack(alignment: .leading){
+                            Text("Glycemia").foregroundColor(Color("greenBlue"))
+                            Text("Importance: " + String(report.glycemiaImportance) + "/5").font(.caption)
+                        }
+                        
+                        Spacer()
+                        Text(String(report.glycemia)).font(.title)
+                        Text("mg/dl").font(.caption)
+                    }.padding().frame(minWidth: widthBound, minHeight: rowHeight)
+                )).padding(.horizontal)
+                
+                
                 // MARK: -Note
                 boxView(content: AnyView(
                     VStack{
@@ -103,7 +119,7 @@ struct ReportDetail: View {
                 
                 
                 // MARK: -Edit report
-                NavigationLink(destination: editReport(report: self.report, temperature: String(self.report.temperature), date: self.report.date!, weight: String(self.report.weight), heartRate: String(self.report.heartRate), text: self.report.note!, tempImportance: self.report.temperatureImportance, weightImportance: self.report.weightImportance, heartImportance: self.report.heartRateImportance)){
+                NavigationLink(destination: editReport(report: self.report, temperature: String(self.report.temperature), date: self.report.date!, weight: String(self.report.weight), heartRate: String(self.report.heartRate), glycemia: String(self.report.glycemia), text: self.report.note!, tempImportance: self.report.temperatureImportance, weightImportance: self.report.weightImportance, heartImportance: self.report.heartRateImportance, glycemiaImportance: self.report.glycemiaImportance)){
                     boxView(content: AnyView(
                         HStack{
                             Image(systemName: "ellipsis")

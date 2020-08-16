@@ -15,7 +15,7 @@ struct ReportList: View {
     
     // Filter list
     @State var pickerValue : Int = 0
-    var filterValue = ["None","Temp.","Weight","H.R."]
+    var filterValue = ["None","Temp.","Weight","H.R.","Glyc."]
     @State var importance = 1
     
     private func filterList() -> [FetchedResults<Report>.Element] {
@@ -32,6 +32,10 @@ struct ReportList: View {
         case 3:
             return self.reports.filter({
                 $0.heartRateImportance>=self.importance
+            })
+        case 4:
+            return self.reports.filter({
+                $0.glycemiaImportance>=self.importance
             })
         default:
             return self.reports.filter({

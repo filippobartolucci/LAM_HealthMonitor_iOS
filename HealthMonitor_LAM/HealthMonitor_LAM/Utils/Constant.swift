@@ -39,3 +39,10 @@ func heartStyle() -> ChartStyle {
     
     return styleH
 }
+
+func glycemiaStyle() -> ChartStyle {
+    let styleH = ChartStyle(backgroundColor: Color("boxBackground"), accentColor: Color("greenBlue"), gradientColor: GradientColor(start: Color("greenBlue"), end: Color(.cyan)), textColor: Color("text"), legendTextColor: Color("text"), dropShadowColor: Color("Text"))
+    styleH.darkModeStyle = styleH
+    
+    return styleH
+}

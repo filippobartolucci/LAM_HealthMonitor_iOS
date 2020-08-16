@@ -19,6 +19,7 @@ struct addReportView: View {
     @State var date = Date()
     @State var weight = ""
     @State var heartRate = ""
+    @State var glycemia = ""
     @State var text = ""
     
     
@@ -26,17 +27,21 @@ struct addReportView: View {
     @State var tempImportance = 3
     @State var weightImportance = 3
     @State var heartImportance = 3
+    @State var glycemiaImportance = 3
     
     // Enable "Add Report" button
     func checkForm() -> Bool {
-        let checkTemp:Float = Float(self.temperature.replacingOccurrences(of: ",", with: ".")) ?? Float(0)
-        let checkWeight:Float = Float(self.weight.replacingOccurrences(of: ",", with: ".")) ?? Float(0)
-        let checkHeart:Int = Int(self.heartRate) ?? 0
+        let checkTemp: Float = Float(self.temperature.replacingOccurrences(of: ",", with: ".")) ?? Float(0)
+        let checkWeight: Float = Float(self.weight.replacingOccurrences(of: ",", with: ".")) ?? Float(0)
+        let checkHeart: Int = Int(self.heartRate) ?? 0
+        let checkGlycemia: Int = Int(self.glycemia) ?? 0
         
         if (checkTemp >= 33.0 && checkTemp <= 44.0){
             if (checkWeight > 0.0){
                 if (checkHeart >= 20){
-                    return true
+                    if (checkGlycemia >= 50){
+                        return true
+                    }
                 }
             }
         }
@@ -76,11 +81,14 @@ struct addReportView: View {
         r.heartRate = Int16(self.heartRate)!
         r.heartRateImportance = Int16(self.heartImportance)
         
+        r.glycemia = Int16(self.glycemia)!
+        r.glycemiaImportance = Int16(self.glycemiaImportance)
+        
         r.note = self.text
         
         saveContext()
     }
-    
+
     func updateReport(report:Report){
         // Temperature
         report.temperature = (report.temperature + Float(self.temperature.replacingOccurrences(of: ",", with: "."))!)/2
@@ -95,7 +103,12 @@ struct addReportView: View {
         // HeartRate
         report.heartRate = (report.heartRate + Int16(self.heartRate)!)/2
         if(report.heartRateImportance <= self.heartImportance){
-            report.heartRateImportance = Int16(self.weightImportance)
+            report.heartRateImportance = Int16(self.heartImportance)
+        }
+        // Glycemia
+        report.glycemia = (report.glycemia + Int16(self.glycemia)!)/2
+        if(report.glycemiaImportance <= self.glycemiaImportance){
+            report.glycemiaImportance = Int16(self.glycemiaImportance)
         }
         saveContext()
     }
@@ -190,6 +203,29 @@ struct addReportView: View {
                     ))){
                         HStack{
                             Text("Heart: " + String(self.heartRate)).multilineTextAlignment(.leading)
+                            Spacer()
+                            Image(systemName: "arrow.right")
+                        }.padding(.horizontal)
+                        
+                    }
+                }.frame(minHeight:buttonHeight)
+            )).padding(.vertical)
+            
+            // MARK: -Glycemia
+            boxView(content: AnyView(
+                VStack{
+                    NavigationLink(destination: FormView(content: AnyView(
+                        VStack{
+                            Form{
+                                TextField("Glycemia value must be > 30", text: $glycemia)
+                                    .keyboardType(.decimalPad)
+                                Stepper("Importance: \(heartImportance)", value: $glycemiaImportance, in: 1...5)
+                            }
+                            Spacer()
+                        }
+                    ))){
+                        HStack{
+                            Text("Glycemia: " + String(self.glycemia)).multilineTextAlignment(.leading)
                             Spacer()
                             Image(systemName: "arrow.right")
                         }.padding(.horizontal)

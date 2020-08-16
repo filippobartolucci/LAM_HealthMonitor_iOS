@@ -15,7 +15,7 @@ struct Tab2View: View {
     var reports: FetchedResults<Report>
     
     @State var pickerValue = 0
-    var graphTypes = ["Temperature","Weight","Heart Rate"]
+    var graphTypes = ["Temperature","Weight","Heart Rate","Glycemia"]
     
     private func createTemperatureArray() -> [Double] {
         var array = [Double]()
@@ -41,6 +41,14 @@ struct Tab2View: View {
         return array
     }
     
+    private func createGlycemiaArray() -> [Double] {
+        var array = [Double]()
+        for report in self.reports.reversed(){
+            array.append(Double(report.glycemia))
+        }
+        return array
+    }
+    
     var body: some View {
         NavigationView{
             ScrollView{
@@ -49,10 +57,22 @@ struct Tab2View: View {
                     Text("Add your first report")
                 }else{
                     Spacer()
-                    Section(header: HStack{Text("Average values");Spacer()}){
+                    Section(header: HStack{Text("Average values");Spacer()}.frame(maxWidth: widthBound)){
                         avgReportCard(reports:self.reports)
                     }
-                    Divider().frame(minHeight:buttonHeight)
+                    //MARK: -Report Number
+                    boxView(content: AnyView(
+                        HStack{
+                            Group{
+                                Image(systemName: "doc")
+                                Text("Report saved")
+                            }.foregroundColor(Color("orange"))
+                            Spacer()
+                            Text(String(reports.count)).font(.title)
+                        }.padding().frame(minWidth : widthBound,minHeight: rowHeight)
+                    )).padding(.horizontal)
+                    
+                    Divider().frame(maxWidth: widthBound, minHeight:buttonHeight)
                     
                     Section(header: HStack{Text("Graphs");Spacer()}){
                         Picker(selection: self.$pickerValue, label: Text("Filter by:")) {
@@ -60,7 +80,7 @@ struct Tab2View: View {
                                 Text(self.graphTypes[$0])
                             }
                         }.pickerStyle(SegmentedPickerStyle())
-                    }
+                    }.frame(maxWidth: widthBound)
     
                     Group{
                         if (self.pickerValue) == 1{
@@ -73,9 +93,16 @@ struct Tab2View: View {
                                     LineView(data: self.createHeartArray(), title: "Heart Rate", style: heartStyle()).background(Color("boxBackground")).padding(.horizontal)
                                 )).frame(minHeight: graphHeight).padding(.vertical)
                             }else{
-                                boxView(content: AnyView(
-                                    LineView(data: self.createTemperatureArray(), title: "Temperature", style: tempStyle()).background(Color("boxBackground")).padding(.horizontal)
-                                )).frame(minHeight: graphHeight).padding(.vertical)
+                                if (self.pickerValue == 3){
+                                    boxView(content: AnyView(
+                                        LineView(data: self.createGlycemiaArray(), title: "Glycemia", style: glycemiaStyle()).background(Color("boxBackground")).padding(.horizontal)
+                                    )).frame(minHeight: graphHeight).padding(.vertical)
+                                }else{
+                                    boxView(content: AnyView(
+                                        LineView(data: self.createTemperatureArray(), title: "Temperature", style: tempStyle()).background(Color("boxBackground")).padding(.horizontal)
+                                    )).frame(minHeight: graphHeight).padding(.vertical)
+                                }
+                                
                             }
                         }
                     }

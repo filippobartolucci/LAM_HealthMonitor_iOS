@@ -116,6 +116,19 @@ struct Tab1View: View {
                                     Text("Bpm").font(.caption)
                                 }.padding().frame(minWidth : widthBound,minHeight: rowHeight)
                             )).padding(.horizontal)
+                            
+                            // MARK: -Glycemia
+                            boxView(content: AnyView(
+                                HStack{
+                                    Group{
+                                        Image(systemName: "g.circle")
+                                        Text("Glycemia")
+                                    }.foregroundColor(Color("greenBlue"))
+                                    Spacer()
+                                    Text(String(reports.first!.glycemia)).font(.title)
+                                    Text("mg/dl").font(.caption)
+                                }.padding().frame(minWidth : widthBound,minHeight: rowHeight)
+                            )).padding(.horizontal)
                         }
                         
                         
@@ -133,7 +146,7 @@ struct Tab1View: View {
                                         Text("Show all reports")
                                         Spacer()
                                         Image(systemName: "arrow.right").accentColor(Color(.gray))
-                                    }.accentColor(Color("greenBlue")).padding(.horizontal).frame(minWidth : widthBound, minHeight: buttonHeight)
+                                    }.accentColor(Color("orange")).padding(.horizontal).frame(minWidth : widthBound, minHeight: buttonHeight)
                                 ))
                             }.padding(.top).frame(maxWidth : widthBound)
                             
