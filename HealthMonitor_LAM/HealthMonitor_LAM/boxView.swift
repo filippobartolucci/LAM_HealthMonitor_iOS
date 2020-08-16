@@ -16,7 +16,7 @@ struct boxView: View {
         Group{
             self.content
         }
-            .frame(maxWidth : UIScreen.main.bounds.size.width*0.9)
+            .frame(maxWidth : widthBound)
             .background(Color("boxBackground"))
             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
         }

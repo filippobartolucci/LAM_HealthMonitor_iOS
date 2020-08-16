@@ -10,7 +10,10 @@ import Foundation
 import SwiftUI
 import SwiftUICharts
 
+let tabIconSize : CGFloat = 24.0
 let buttonHeight : CGFloat = 50
+let rowHeight : CGFloat = 55
+let graphHeight : CGFloat = 350
 let widthBound : CGFloat = UIScreen.main.bounds.size.width*0.9
 let squareSize : CGFloat = UIScreen.main.bounds.size.width*0.9*0.5
 

@@ -52,7 +52,7 @@ struct avgReportCard: View {
                             
                             
                             HStack{
-                                Text(String(avgTemperature(report: self.reports))).font(.system(size: 48))
+                                Text(String(avgTemperature(report: self.reports))).font(.system(size: 43))
                                 Text("°C").font(.system(size: 30)).offset(x:-5)
                             }.offset(x:10, y:-15)
                             
@@ -80,7 +80,7 @@ struct avgReportCard: View {
                             }.offset(x : 20, y:0).foregroundColor(Color("purple"))
                             
                             HStack{
-                                Text(String(avgWeight(report: self.reports))).font(.system(size: 45))
+                                Text(String(avgWeight(report: self.reports))).font(.system(size: 43))
                                 Text("KG").font(.system(size: 29)).offset(x:-5)
                             }.offset(x:15, y:-15)
                             
@@ -111,7 +111,7 @@ struct avgReportCard: View {
                             }.offset(x : 20, y:0).foregroundColor(Color("red"))
                             
                             HStack{
-                                Text(String(avgHeartRate(report: self.reports))).font(.system(size: 46))
+                                Text(String(avgHeartRate(report: self.reports))).font(.system(size: 43))
                                 Text("Bpm").font(.system(size: 27)).offset(x:-5)
                             }.offset(x:13, y:-15)
                             
@@ -139,7 +139,7 @@ struct avgReportCard: View {
                             }.offset(x : 20, y:0).foregroundColor(Color("orange"))
                             
                             HStack{
-                                Text(String(reports.count)).font(.system(size: 48))
+                                Text(String(reports.count)).font(.system(size: 43))
                                 Text("  ").font(.system(size: 30)).offset(x:-5)
                             }.offset(x:15, y:-15)
                             
@@ -148,7 +148,7 @@ struct avgReportCard: View {
                     ))
                 }
             }
-        }.frame(maxWidth:UIScreen.main.bounds.size.width*0.9)
+        }.frame(maxWidth: widthBound)
     }
     
     

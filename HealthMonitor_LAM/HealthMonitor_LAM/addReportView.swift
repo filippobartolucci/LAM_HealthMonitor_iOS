@@ -30,7 +30,6 @@ struct addReportView: View {
     // Enable "Add Report" button
     func checkForm() -> Bool {
         let checkTemp:Float = Float(self.temperature.replacingOccurrences(of: ",", with: ".")) ?? Float(0)
-        print(checkTemp)
         let checkWeight:Float = Float(self.weight.replacingOccurrences(of: ",", with: ".")) ?? Float(0)
         let checkHeart:Int = Int(self.heartRate) ?? 0
         
@@ -67,11 +66,11 @@ struct addReportView: View {
         r.id = UUID()
         r.date = self.date
         
-        r.temperature = Float(self.temperature)!
+        r.temperature = Float(self.temperature.replacingOccurrences(of: ",", with: ".")) ?? Float(0)
         r.temperatureImportance = Int16(self.tempImportance)
         
         
-        r.weight = Float(self.weight)!
+        r.weight = Float(self.weight.replacingOccurrences(of: ",", with: ".")) ?? Float(0)
         r.weightImportance = Int16(self.weightImportance)
         
         r.heartRate = Int16(self.heartRate)!
@@ -84,12 +83,12 @@ struct addReportView: View {
     
     func updateReport(report:Report){
         // Temperature
-        report.temperature = (report.temperature + Float(self.temperature)!)/2
+        report.temperature = (report.temperature + Float(self.temperature.replacingOccurrences(of: ",", with: "."))!)/2
         if(report.temperatureImportance <= self.tempImportance){
             report.temperatureImportance = Int16(self.tempImportance)
         }
         // Weight
-        report.weight = (report.weight + Float(self.weight)!)/2
+        report.weight = (report.weight + Float(self.weight.replacingOccurrences(of: ",", with: "."))!)/2
         if(report.weightImportance <= self.weightImportance){
             report.weightImportance = Int16(self.weightImportance)
         }
@@ -114,8 +113,6 @@ struct addReportView: View {
             Spacer()
             
             // MARK: -Date
-            
-            
             boxView(content: AnyView(
                 VStack{
                     NavigationLink(destination: FormView(content: AnyView(
@@ -230,14 +227,16 @@ struct addReportView: View {
             
             Divider()
             
-            boxView(content: AnyView(
-                Button(action: {
-                    self.addReport()
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    Text("Add Report").multilineTextAlignment(.leading)
-                }.disabled(!self.checkForm()).frame(minHeight:buttonHeight)
-            )).padding(.vertical).accentColor(Color(.red))
+            Button(action: {
+                self.addReport()
+                self.presentationMode.wrappedValue.dismiss()
+            }) {
+                boxView(content: AnyView(
+                    Text("Add Report").multilineTextAlignment(.leading).frame(minHeight:buttonHeight)
+                )).padding(.vertical).accentColor(Color(.red))
+            }.disabled(!self.checkForm())
+            
+            
         }.accentColor(Color("text")).navigationBarTitle("New Report")
     }
 }

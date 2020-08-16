@@ -38,8 +38,8 @@ struct editReport: View {
     }
     
     func updateReport(){
-        self.report.temperature = Float(self.temperature)!
-        self.report.weight = Float(self.weight)!
+        self.report.temperature = Float(self.temperature.replacingOccurrences(of: ",", with: "."))!
+        self.report.weight = Float(self.weight.replacingOccurrences(of: ",", with: "."))!
         self.report.heartRate = Int16(self.heartRate)!
         self.report.note = self.text
         self.report.temperatureImportance = Int16(self.tempImportance)

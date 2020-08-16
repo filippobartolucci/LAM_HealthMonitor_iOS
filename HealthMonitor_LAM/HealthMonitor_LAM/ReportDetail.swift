@@ -38,7 +38,7 @@ struct ReportDetail: View {
                         Spacer()
                         Text(String(report.temperature)).font(.title)
                         Text("°C").font(.caption)
-                    }.padding().frame(minWidth : widthBound,minHeight:55)
+                    }.padding().frame(minWidth: widthBound,minHeight: rowHeight)
                 )).padding(.horizontal)
                 
                 
@@ -54,7 +54,7 @@ struct ReportDetail: View {
                         Spacer()
                         Text(String(report.weight)).font(.title)
                         Text("KG").font(.caption)
-                    }.padding().frame(minWidth : widthBound,minHeight:55)
+                    }.padding().frame(minWidth: widthBound, minHeight: rowHeight)
                 )).padding(.horizontal)
                 
                 
@@ -70,7 +70,7 @@ struct ReportDetail: View {
                         Spacer()
                         Text(String(report.heartRate)).font(.title)
                         Text("Bpm").font(.caption)
-                    }.padding().frame(minWidth : widthBound,minHeight:55)
+                    }.padding().frame(minWidth: widthBound, minHeight: rowHeight)
                 )).padding(.horizontal)
                 
                 
@@ -94,7 +94,7 @@ struct ReportDetail: View {
                             }
                         }
                         
-                    }.padding().frame(minWidth : widthBound,minHeight:55)
+                    }.padding().frame(minWidth: widthBound, minHeight: rowHeight)
                 )).padding(.horizontal)
                 
                 Spacer()
