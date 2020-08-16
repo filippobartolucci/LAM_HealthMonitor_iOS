@@ -22,6 +22,7 @@ struct ContentView: View {
         ]
     ) var reports: FetchedResults<Report>
     
+    var filteredReport = [Report]()
     
     //    MARK: -View
     var body: some View {
@@ -29,7 +30,7 @@ struct ContentView: View {
             if (self.reports.isEmpty){
                 Tab1NoReportView(reports: self.reports).tabItem {
                     HStack{
-                        Image(systemName: "heart.circle").font(.system(size: 24.0))
+                        Image(systemName: "heart.fill").font(.system(size: 24.0))
                         Text("Summary")
                     }
                 }
@@ -45,7 +46,8 @@ struct ContentView: View {
             Tab2View(reports:self.reports).environment(\.managedObjectContext, managedObjectContext).tabItem {
                 HStack{
                     Image(systemName: "square.grid.2x2.fill").font(.system(size: 24.0))
-                    Text("Other") }
+                    Text("Other")
+                }
             }
         }
         .accentColor(.red)

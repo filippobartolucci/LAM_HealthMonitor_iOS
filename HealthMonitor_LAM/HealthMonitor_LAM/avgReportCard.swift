@@ -28,7 +28,7 @@ struct avgReportCard: View {
                                             .background(Color(.gray))
                                             .opacity(0.2)
                                             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-                                        Image(systemName: "flame.fill")
+                                        Image(systemName: "flame")
                                     }
                                     Text("Avg. Temperature")
                                         .font(.caption)

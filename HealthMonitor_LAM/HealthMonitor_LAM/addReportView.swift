@@ -29,12 +29,13 @@ struct addReportView: View {
     
     // Enable "Add Report" button
     func checkForm() -> Bool {
-        let checkTemp:Float = Float(self.temperature) ?? Float(0)
-        let checkWeight:Float = Float(self.weight) ?? Float(0)
+        let checkTemp:Float = Float(self.temperature.replacingOccurrences(of: ",", with: ".")) ?? Float(0)
+        print(checkTemp)
+        let checkWeight:Float = Float(self.weight.replacingOccurrences(of: ",", with: ".")) ?? Float(0)
         let checkHeart:Int = Int(self.heartRate) ?? 0
         
-        if (checkTemp >= 33 && checkTemp <= 44){
-            if (checkWeight >= 0){
+        if (checkTemp >= 33.0 && checkTemp <= 44.0){
+            if (checkWeight > 0.0){
                 if (checkHeart >= 20){
                     return true
                 }
@@ -149,7 +150,6 @@ struct addReportView: View {
                             Spacer()
                             Image(systemName: "arrow.right")
                         }.padding(.horizontal)
-                        
                     }
                 }.frame(minHeight:buttonHeight)
             )).padding(.vertical)

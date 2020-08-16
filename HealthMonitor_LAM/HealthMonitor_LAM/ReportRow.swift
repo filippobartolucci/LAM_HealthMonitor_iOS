@@ -12,12 +12,18 @@ struct ReportRow: View {
     var report : Report
     
     var body: some View {
-        HStack{
-            Text("Report of: ").font(.system(size: 18))
-            Text(report.date!.stringify()).font(.system(size: 18)).bold()
-            Spacer()
-            
-        }.frame(minHeight : buttonHeight)
+        Group{
+            if (report.date != nil){
+                HStack{
+                    Text("Report of: ").font(.system(size: 18))
+                    Text(report.date!.stringify()).font(.system(size: 18)).bold()
+                    Spacer()
+                    
+                }.frame(minHeight : buttonHeight)
+            }else{
+                Spacer().frame(maxHeight:0)
+            }
+        }
     }
 }
 

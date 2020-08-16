@@ -74,7 +74,7 @@ struct Tab1View: View {
                 Group{
                     // MARK: -Show All Report
                     NavigationLink(destination:    
-                       ReportList(reports:self.reports)
+                        ReportList(reports:self.reports)
                     ) {
                         boxView(content: AnyView(
                             HStack{

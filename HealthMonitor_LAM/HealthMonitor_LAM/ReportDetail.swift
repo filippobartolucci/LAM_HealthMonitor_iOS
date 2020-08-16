@@ -17,7 +17,7 @@ struct ReportDetail: View {
     var body: some View {
         ScrollView{
             VStack{
-                Spacer().padding().frame(minHeight:buttonHeight)
+                Spacer()
                 // MARK: -Temperature
                 boxView(content: AnyView(
                     HStack{
