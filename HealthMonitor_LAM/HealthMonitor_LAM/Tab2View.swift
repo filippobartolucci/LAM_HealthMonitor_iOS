@@ -15,7 +15,7 @@ struct Tab2View: View {
     var reports: FetchedResults<Report>
     
     @State var pickerValue = 0
-    var graphTypes = ["Temperature","Weight","Heart Rate","Glycemia"]
+    var graphTypes = ["Temp.","Weight","Heart Rate","Glycemia"]
     
     private func createTemperatureArray() -> [Double] {
         var array = [Double]()
@@ -57,7 +57,7 @@ struct Tab2View: View {
                     Text("Add your first report")
                 }else{
                     Spacer()
-                    Section(header: HStack{Text("Average values");Spacer()}.frame(maxWidth: widthBound)){
+                    Section(header: sectionText(text: "Average values")){
                         avgReportCard(reports:self.reports)
                     }
                     //MARK: -Report Number
@@ -65,7 +65,7 @@ struct Tab2View: View {
                         HStack{
                             Group{
                                 Image(systemName: "doc")
-                                Text("Report saved")
+                                Text("Number of reports")
                             }.foregroundColor(Color("orange"))
                             Spacer()
                             Text(String(reports.count)).font(.title)
@@ -74,8 +74,8 @@ struct Tab2View: View {
                     
                     Divider().frame(maxWidth: widthBound, minHeight:buttonHeight)
                     
-                    Section(header: HStack{Text("Graphs");Spacer()}){
-                        Picker(selection: self.$pickerValue, label: Text("Filter by:")) {
+                    Section(header: sectionText(text: "Graphs")){
+                        Picker(selection: self.$pickerValue, label: Text("")) {
                             ForEach(0..<self.graphTypes.count){
                                 Text(self.graphTypes[$0])
                             }

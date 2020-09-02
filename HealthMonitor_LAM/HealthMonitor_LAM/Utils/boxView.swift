@@ -16,8 +16,8 @@ struct boxView: View {
         Group{
             self.content
         }
-            .frame(maxWidth : widthBound)
-            .background(Color("boxBackground"))
-            .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-        }
+        .frame(maxWidth : widthBound)
+        .background(Color("boxBackground"))
+        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+    }
 }

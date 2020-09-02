@@ -21,16 +21,16 @@ struct ContentView: View {
     //    MARK: -View
     var body: some View {
         TabView(){
-            Tab1View(reports: self.reports).tabItem {
+            HealthTabView(reports: self.reports).tabItem {
                 HStack{
                     Image(systemName: "heart.fill").font(.system(size: tabIconSize))
-                    Text("Summary")
+                    Text("Health")
                 }
             }
             Tab2View(reports:self.reports).environment(\.managedObjectContext, managedObjectContext).tabItem {
                 HStack{
                     Image(systemName: "square.grid.2x2.fill").font(.system(size: tabIconSize))
-                    Text("Other")
+                    Text("Info")
                 }
             }
         }

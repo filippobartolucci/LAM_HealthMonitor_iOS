@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 
 func compareDate(date1:Date, date2:Date) -> Bool {
@@ -19,3 +20,12 @@ func compareDate(date1:Date, date2:Date) -> Bool {
     }
 }
 
+struct sectionText: View {
+    var text : String
+    
+    var body : some View {
+        Group{
+            HStack{Text(text);Spacer()}.frame(maxWidth: widthBound)
+        }
+    }
+}

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import NotificationCenter
+import UserNotifications
 
 class LocalNotificationManager: ObservableObject {
     var center = UNUserNotificationCenter.current()
@@ -18,43 +19,16 @@ class LocalNotificationManager: ObservableObject {
         self.center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
             if granted == true && error == nil {
                 print("Notifications permitted")
+                self.notificationsEnabled = true
             } else {
                 print("Notifications not permitted")
             }
         }
     }
     
-    // Return true if notifications are permitted
-    func checkPermission() -> Bool {
-        var perm = false
-        self.center.getNotificationSettings { (settings) in
-            if(settings.authorizationStatus == .authorized) {
-                print("Notifications enabled")
-                perm = true
-            } else {
-                print("Notifications not enabled")
-            }
-        }
-        return perm
-    }
-    
-    // Return true if there are pending notifications
-    func checkForPendingNotifications() -> Bool {
-        var pending = true
-        
-        self.center.getPendingNotificationRequests(completionHandler: { requests in
-            print("Checking pending notifications...")
-            if requests.isEmpty == true {
-                print("No pending notifications.")
-                pending = false
-            }
-        })
-        print(pending)
-        return pending
-    }
     
     // Set new notification
-    func sendNotification() {
+    func sendDailyNotification(d: Date) {
         
         // Disable old notifications
         self.removePendingNotification()
@@ -67,8 +41,8 @@ class LocalNotificationManager: ObservableObject {
         
         // Time
         var dateComponents = DateComponents()
-        dateComponents.hour = 17
-        dateComponents.minute = 23
+        dateComponents.hour = Calendar.current.component(.hour, from: d)
+        dateComponents.minute = Calendar.current.component(.minute, from: d)
         
         // Enable
         print("Creating new notification")

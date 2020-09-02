@@ -8,11 +8,17 @@
 
 import SwiftUI
 
-struct Tab1View: View {
+struct HealthTabView: View {
     // CoreData Environment
     @Environment(\.managedObjectContext) var managedObjectContext
     var reports: FetchedResults<Report>
     
+    @FetchRequest(
+        entity: Monitoring.entity(),
+        sortDescriptors: []
+    ) var monitoring: FetchedResults<Monitoring>
+    
+    @State var notificationManager = LocalNotificationManager()
     
     var body: some View {
         NavigationView{
@@ -44,21 +50,7 @@ struct Tab1View: View {
                                     }.padding(.horizontal).frame(minWidth : widthBound, maxWidth: widthBound, minHeight: buttonHeight)
                                 ))
                             }.accentColor(Color("heartRed")).padding(.horizontal)
-                            
-                            // MARK: -Settings
-                            NavigationLink(destination: SettingsView()){
-                                boxView(content: AnyView(
-                                    HStack{
-                                        Image(systemName: "gear")
-                                        Text("Settings")
-                                        Spacer()
-                                        Image(systemName: "arrow.right")
-                                    }.accentColor(Color(.gray)).padding(.horizontal).frame(minWidth : widthBound, maxWidth: widthBound, minHeight: buttonHeight)
-                                )).padding(.horizontal)
-                            }
-                            .navigationBarTitle(Text("Summary"), displayMode: .automatic)
-                            .padding(.bottom)
-                        }
+                        }.navigationBarTitle(Text("Summary"), displayMode: .automatic)
                         
                     }else{
                         
@@ -145,7 +137,7 @@ struct Tab1View: View {
                                         Image(systemName: "folder")
                                         Text("Show all reports")
                                         Spacer()
-                                        Image(systemName: "arrow.right").accentColor(Color(.gray))
+                                        Image(systemName: "arrow.right").accentColor(Color("text"))
                                     }.accentColor(Color("orange")).padding(.horizontal).frame(minWidth : widthBound, minHeight: buttonHeight)
                                 ))
                             }.padding(.top).frame(maxWidth : widthBound)
@@ -158,20 +150,20 @@ struct Tab1View: View {
                                         Image(systemName: "plus.square")
                                         Text("Add Report")
                                         Spacer()
-                                        Image(systemName: "arrow.right").accentColor(Color(.gray))
+                                        Image(systemName: "arrow.right").accentColor(Color("text"))
                                     }.padding(.horizontal).frame(minWidth : widthBound,maxWidth:widthBound, minHeight: buttonHeight)
                                 ))
                             }.accentColor(Color("heartRed")).padding(.horizontal)
                             
                             
                             // MARK: -Settings
-                            NavigationLink(destination: SettingsView()){
+                            NavigationLink(destination: SettingsView(notificationManager: self.notificationManager)){
                                 boxView(content: AnyView(
                                     HStack{
                                         Image(systemName: "gear")
                                         Text("Settings")
                                         Spacer()
-                                        Image(systemName: "arrow.right")
+                                        Image(systemName: "arrow.right").accentColor(Color("text"))
                                     }.accentColor(Color(.gray)).padding(.horizontal).frame(minWidth : widthBound,maxWidth:widthBound, minHeight: buttonHeight)
                                 )).padding(.horizontal)
                             }

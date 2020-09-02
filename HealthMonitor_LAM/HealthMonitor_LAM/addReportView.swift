@@ -162,7 +162,7 @@ struct addReportView: View {
                         }.padding(.horizontal)
                     }
                 }.frame(minHeight:buttonHeight)
-            )).padding(.vertical)
+            ))
             
             // MARK: -Weight
             boxView(content: AnyView(
@@ -209,7 +209,7 @@ struct addReportView: View {
                         
                     }
                 }.frame(minHeight:buttonHeight)
-            )).padding(.vertical)
+            ))
             
             // MARK: -Glycemia
             boxView(content: AnyView(
@@ -217,7 +217,7 @@ struct addReportView: View {
                     NavigationLink(destination: FormView(content: AnyView(
                         VStack{
                             Form{
-                                TextField("Glycemia value must be > 30", text: $glycemia)
+                                TextField("Glycemia value must be > 50", text: $glycemia)
                                     .keyboardType(.decimalPad)
                                 Stepper("Importance: \(heartImportance)", value: $glycemiaImportance, in: 1...5)
                             }
@@ -259,7 +259,7 @@ struct addReportView: View {
                         
                     }.padding(.vertical)
                 }.frame(minHeight:buttonHeight)
-            )).padding(.vertical)
+            )).padding(.bottom)
             
             Divider()
             
@@ -271,7 +271,6 @@ struct addReportView: View {
                     Text("Add Report").multilineTextAlignment(.leading).frame(minHeight:buttonHeight)
                 )).padding(.vertical).accentColor(Color(.red))
             }.disabled(!self.checkForm())
-            
             
         }.accentColor(Color("text")).navigationBarTitle("New Report")
     }

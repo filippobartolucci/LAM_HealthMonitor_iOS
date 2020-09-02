@@ -15,7 +15,7 @@
 		20F28D7F24E43134000EBE35 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F28D7E24E43134000EBE35 /* Preview Assets.xcassets */; };
 		20F28D8D24E43134000EBE35 /* HealthMonitor_LAMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F28D8C24E43134000EBE35 /* HealthMonitor_LAMTests.swift */; };
 		20F28D9824E43134000EBE35 /* HealthMonitor_LAMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F28D9724E43134000EBE35 /* HealthMonitor_LAMUITests.swift */; };
-		20F28DA724E431F2000EBE35 /* Tab1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F28DA624E431F2000EBE35 /* Tab1View.swift */; };
+		20F28DA724E431F2000EBE35 /* HealthTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F28DA624E431F2000EBE35 /* HealthTab.swift */; };
 		20F28DA924E431FF000EBE35 /* Tab2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F28DA824E431FF000EBE35 /* Tab2View.swift */; };
 		20F28DB224E44098000EBE35 /* HealthMonitor_LAM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20F28DB024E44098000EBE35 /* HealthMonitor_LAM.xcdatamodeld */; };
 		20F28DB424E4494A000EBE35 /* boxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F28DB324E4494A000EBE35 /* boxView.swift */; };
@@ -64,7 +64,7 @@
 		20F28D9324E43134000EBE35 /* HealthMonitor_LAMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthMonitor_LAMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F28D9724E43134000EBE35 /* HealthMonitor_LAMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthMonitor_LAMUITests.swift; sourceTree = "<group>"; };
 		20F28D9924E43134000EBE35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		20F28DA624E431F2000EBE35 /* Tab1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab1View.swift; sourceTree = "<group>"; };
+		20F28DA624E431F2000EBE35 /* HealthTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthTab.swift; sourceTree = "<group>"; };
 		20F28DA824E431FF000EBE35 /* Tab2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab2View.swift; sourceTree = "<group>"; };
 		20F28DB124E44098000EBE35 /* HealthMonitor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthMonitor.xcdatamodel; sourceTree = "<group>"; };
 		20F28DB324E4494A000EBE35 /* boxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = boxView.swift; sourceTree = "<group>"; };
@@ -134,7 +134,6 @@
 				20FA191024E53FFA004EA05D /* ReportView */,
 				20FA190324E46BFD004EA05D /* Utils */,
 				20F28D7924E43131000EBE35 /* ContentView.swift */,
-				20F28DB324E4494A000EBE35 /* boxView.swift */,
 				20FA190A24E4A2D9004EA05D /* SettingsView.swift */,
 				20F28D8324E43134000EBE35 /* Info.plist */,
 				20F28DB024E44098000EBE35 /* HealthMonitor_LAM.xcdatamodeld */,
@@ -182,7 +181,7 @@
 		20F28DAB24E43212000EBE35 /* TabView */ = {
 			isa = PBXGroup;
 			children = (
-				20F28DA624E431F2000EBE35 /* Tab1View.swift */,
+				20F28DA624E431F2000EBE35 /* HealthTab.swift */,
 				20F28DA824E431FF000EBE35 /* Tab2View.swift */,
 			);
 			name = TabView;
@@ -191,6 +190,7 @@
 		20FA190324E46BFD004EA05D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				20F28DB324E4494A000EBE35 /* boxView.swift */,
 				20F28DB524E4518B000EBE35 /* Constant.swift */,
 				20FA190424E486A3004EA05D /* DateExtension.swift */,
 				20E615E124E9547D001B2BC0 /* LocalNotificationManager.swift */,
@@ -300,6 +300,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 20F28D6624E43131000EBE35;
 			packageReferences = (
@@ -347,7 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20F28DA724E431F2000EBE35 /* Tab1View.swift in Sources */,
+				20F28DA724E431F2000EBE35 /* HealthTab.swift in Sources */,
 				20E615E224E9547D001B2BC0 /* LocalNotificationManager.swift in Sources */,
 				20F28DB424E4494A000EBE35 /* boxView.swift in Sources */,
 				20FA191824E56EEE004EA05D /* avgReportCard.swift in Sources */,

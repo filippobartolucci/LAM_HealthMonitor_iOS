@@ -119,7 +119,7 @@ struct editReport: View {
                         
                     }
                 }.frame(minHeight:buttonHeight)
-            )).padding(.vertical)
+            ))
             
             // MARK: -Heart Rate
             boxView(content: AnyView(
@@ -150,7 +150,7 @@ struct editReport: View {
                     NavigationLink(destination: FormView(content: AnyView(
                         VStack{
                             Form{
-                                TextField("Glycemia value must be > 30", text: $glycemia)
+                                TextField("Glycemia value must be > 50", text: $glycemia)
                                     .keyboardType(.decimalPad)
                                 Stepper("Importance: \(glycemiaImportance)", value: $glycemiaImportance, in: 1...5)
                             }
@@ -165,7 +165,7 @@ struct editReport: View {
                         
                     }
                 }.frame(minHeight:buttonHeight)
-            )).padding(.vertical)
+            ))
             
             // MARK: -Note
             boxView(content: AnyView(
