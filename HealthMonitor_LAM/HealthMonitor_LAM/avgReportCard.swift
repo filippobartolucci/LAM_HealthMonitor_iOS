@@ -16,6 +16,7 @@ struct avgReportCard: View {
     var body: some View {
         HStack{
             VStack{
+                
                 //MARK: -Temperature
                 Group{
                     boxView(content: AnyView(

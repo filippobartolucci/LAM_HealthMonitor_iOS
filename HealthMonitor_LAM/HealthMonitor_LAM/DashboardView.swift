@@ -9,7 +9,7 @@
 import SwiftUI
 import SwiftUICharts
 
-struct Tab2View: View {
+struct DashboardView: View {
     // CoreData Environment
     @Environment(\.managedObjectContext) var managedObjectContext
     var reports: FetchedResults<Report>
@@ -72,7 +72,7 @@ struct Tab2View: View {
                         }.padding().frame(minWidth : widthBound,minHeight: rowHeight)
                     )).padding(.horizontal)
                     
-                    Divider().frame(maxWidth: widthBound, minHeight:buttonHeight)
+                    myDivider().frame(minHeight:buttonHeight)
                     
                     Section(header: sectionText(text: "Graphs")){
                         Picker(selection: self.$pickerValue, label: Text("")) {
@@ -81,7 +81,7 @@ struct Tab2View: View {
                             }
                         }.pickerStyle(SegmentedPickerStyle())
                     }.frame(maxWidth: widthBound)
-    
+                    
                     Group{
                         if (self.pickerValue) == 1{
                             boxView(content: AnyView(

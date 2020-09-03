@@ -57,12 +57,13 @@ struct HealthTabView: View {
                         // MARK: - Non empty reports
                         Spacer()
                         Section(header: HStack{Text("Last report values");Spacer();Text(reports.first!.date!.stringify())}.frame(maxWidth : widthBound)){
+                            
                             // MARK: -Temperature
                             boxView(content: AnyView(
                                 HStack{
                                     if (reports.first!.temperature>37.5){
                                         Group{
-                                            Image(systemName: "flame")
+                                            Image(systemName: "flame").accentColor(Color(.red))
                                             VStack(alignment: .leading){
                                                 Text("Temperature")
                                             }.foregroundColor(Color(.red))
@@ -95,7 +96,6 @@ struct HealthTabView: View {
                                 }.padding().frame(minWidth : widthBound,minHeight: rowHeight)
                             )).padding(.horizontal)
                             
-                            
                             // MARK: -Heart Rate
                             boxView(content: AnyView(
                                 HStack{
@@ -122,10 +122,7 @@ struct HealthTabView: View {
                                 }.padding().frame(minWidth : widthBound,minHeight: rowHeight)
                             )).padding(.horizontal)
                         }
-                        
-                        
-                        Divider().frame(maxWidth:widthBound)
-                        
+                        myDivider()
                         
                         Group{
                             // MARK: -Show All Report
@@ -141,7 +138,6 @@ struct HealthTabView: View {
                                     }.accentColor(Color("orange")).padding(.horizontal).frame(minWidth : widthBound, minHeight: buttonHeight)
                                 ))
                             }.padding(.top).frame(maxWidth : widthBound)
-                            
                             
                             // MARK: -Add Report
                             NavigationLink(destination: addReportView(reports: self.reports)) {
@@ -170,11 +166,12 @@ struct HealthTabView: View {
                             .navigationBarTitle(Text("Summary"), displayMode: .automatic)
                             .padding(.bottom)
                         }
-                        
                     }
                 }
-                
             }
+        }.onAppear{
+            self.notificationManager.checkMonitoringNotifications(monitoring: self.monitoring, rs: self.reports)
+            
         }
     }
 }

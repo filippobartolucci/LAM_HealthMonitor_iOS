@@ -24,13 +24,17 @@ struct SettingsView: View {
     @State var reminderTime = Date()
     
     func createNewMonitoring(){
+        print("creating new monitoring...")
         let m = Monitoring(context: managedObjectContext)
         
+        m.id = UUID()
         m.day = Date()
+        m.startDay = Date()
         m.limit = Float(self.limit)!
         m.importance = Int16(self.importance)
         m.value = self.value[self.pickerValue]
         m.numberOfDays = Int16(self.monitoredDays)
+        m.daysLeft = Int16(self.monitoredDays)
         
         do {
             try managedObjectContext.save()
@@ -47,7 +51,7 @@ struct SettingsView: View {
                 if self.notificationManager.notificationsEnabled{
                     Spacer()
                     
-                    Section(header: HStack{Text("Daily Reminder");Spacer()}.frame(maxWidth : widthBound)){
+                    Section(header: sectionText(text: "Daily Reminder")){
                         //MARK: -Daily Reminder
                         Spacer()
                         
@@ -79,9 +83,10 @@ struct SettingsView: View {
                             ))
                         }.frame(minHeight: buttonHeight)
                     }
-                    Divider().frame(maxWidth: widthBound).padding(.vertical)
                     
-                    Section(header: HStack{Text("Monitor yourself");Spacer()}.frame(maxWidth : widthBound)){
+                    myDivider().padding(.vertical)
+                    
+                    Section(header: sectionText(text: "Monitor Yourself")){
                         
                         boxView(content: AnyView(
                             HStack{
@@ -128,7 +133,7 @@ struct SettingsView: View {
                         ))
                         
                         Button(action: {
-                            // CODE HERE
+                            self.createNewMonitoring()
                         }){
                             boxView(content: AnyView(
                                 HStack{
@@ -140,11 +145,10 @@ struct SettingsView: View {
                         }.frame(minHeight: buttonHeight).disabled(self.limit.count == 0 ? true : false)
                     }
                     
-                    Divider().frame(maxWidth: widthBound).padding(.vertical)
+                    myDivider().padding(.vertical)
                     
                     Button(action: {
                         self.notificationManager.removePendingNotification()
-                        self.
                     }){
                         boxView(content: AnyView(
                             HStack{

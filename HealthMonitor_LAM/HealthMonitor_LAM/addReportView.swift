@@ -261,7 +261,7 @@ struct addReportView: View {
                 }.frame(minHeight:buttonHeight)
             )).padding(.bottom)
             
-            Divider()
+            myDivider()
             
             Button(action: {
                 self.addReport()

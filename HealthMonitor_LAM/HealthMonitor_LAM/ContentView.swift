@@ -27,7 +27,7 @@ struct ContentView: View {
                     Text("Health")
                 }
             }
-            Tab2View(reports:self.reports).environment(\.managedObjectContext, managedObjectContext).tabItem {
+            DashboardView(reports:self.reports).environment(\.managedObjectContext, managedObjectContext).tabItem {
                 HStack{
                     Image(systemName: "square.grid.2x2.fill").font(.system(size: tabIconSize))
                     Text("Info")

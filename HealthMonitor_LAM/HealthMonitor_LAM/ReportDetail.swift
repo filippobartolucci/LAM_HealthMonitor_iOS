@@ -115,7 +115,7 @@ struct ReportDetail: View {
                 
                 Spacer()
                 
-                Divider().padding(.vertical).frame(minWidth : widthBound)
+                myDivider().padding(.vertical)
                 
                 
                 // MARK: -Edit report

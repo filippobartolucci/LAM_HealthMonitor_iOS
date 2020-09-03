@@ -21,7 +21,6 @@ struct editReport: View {
     @State var glycemia : String
     @State var text : String
     
-    
     // MARK: -Report Importance
     @State var tempImportance : Int16
     @State var weightImportance : Int16
@@ -30,7 +29,6 @@ struct editReport: View {
     
     // MARK: -CoreData
     @Environment(\.managedObjectContext) var managedObjectContext
-    
     func saveContext() {
         do {
             try managedObjectContext.save()
@@ -179,7 +177,7 @@ struct editReport: View {
                 ))){
                     VStack{
                         HStack{
-                            Text("Note: ").multilineTextAlignment(.leading)
+                            Text("Note ").multilineTextAlignment(.leading)
                             Spacer()
                             Image(systemName: "arrow.right")
                         }.padding(.horizontal)
@@ -194,7 +192,7 @@ struct editReport: View {
                 }.frame(minHeight:buttonHeight)
             )).padding(.vertical)
             
-            Divider()
+            myDivider()
             
             // MARK: -Update Report
             boxView(content: AnyView(
