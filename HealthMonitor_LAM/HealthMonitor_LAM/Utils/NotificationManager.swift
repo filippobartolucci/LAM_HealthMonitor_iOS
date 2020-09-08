@@ -52,6 +52,7 @@ class LocalNotificationManager: ObservableObject {
         
     }
     
+    
     func checkMonitoringNotifications(monitoring: FetchedResults<Monitoring>, rs : FetchedResults<Report>) -> (){
         if rs.isEmpty || monitoring.isEmpty{
             if rs.isEmpty{
@@ -61,20 +62,22 @@ class LocalNotificationManager: ObservableObject {
             }
             return
         }
-        
         print("Checking monitoring...")
+        
         for m in monitoring{
             if !compareDate(date1: m.day ?? Date(), date2: Date()){
                 m.day = Date()
                 m.daysLeft -= 1
                 if (m.daysLeft < 1){
-                    print("Creating notification...")
                     let avgV = avgMonitoringValue(m: m, rs: rs)
+                    
+                    if (avgV == 0){
+                        return
+                    }
+                    
                     if avgV <= m.limit {
-                        print("ok...")
                         self.sendOKMonitoringNotifications(value: m.value!, limit: m.limit, avg: avgV)
                     }else{
-                        print("not okay")
                         self.sendNotOKMonitoringNotifications(value: m.value!, limit: m.limit, avg: avgV)
                     }
                 }
@@ -84,6 +87,7 @@ class LocalNotificationManager: ObservableObject {
     
     func sendOKMonitoringNotifications(value: String, limit: Float, avg: Float) -> (){
         self.center.removeAllPendingNotificationRequests()
+        
         // Content
         let content = UNMutableNotificationContent()
         content.title = "Congratulations!"
@@ -113,9 +117,15 @@ class LocalNotificationManager: ObservableObject {
         content.body = "Your avg. \(value) was \(avg),over the limit of \(limit)"
         content.sound = UNNotificationSound.default
         
+        var dateComponents = DateComponents()
+        dateComponents.calendar = Calendar.current
+        dateComponents.hour = 18  
+           
+        // Create the trigger as a repeating event.
+        let trigger = UNCalendarNotificationTrigger(
+                 dateMatching: dateComponents, repeats: false)
         // Enable
         print("Creating new notification")
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         self.center.add(request) { error in
             guard error == nil else {

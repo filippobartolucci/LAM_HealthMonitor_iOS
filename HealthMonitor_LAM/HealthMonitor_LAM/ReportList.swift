@@ -44,11 +44,11 @@ struct ReportList: View {
         }
     }
     
+    
     func deleteReport(at offsets: IndexSet) {
         print("Deleting report...")
         
         offsets.forEach { index in
-            print(index)
             let report = filterList()[index]
             self.managedObjectContext.delete(report)
         }
@@ -59,7 +59,7 @@ struct ReportList: View {
     
     func saveContext() {
         do {
-            try managedObjectContext.save()
+            try self.managedObjectContext.save()
         } catch {
             print("Error saving managed object context: \(error)")
         }

@@ -51,7 +51,7 @@
 
 /* Begin PBXFileReference section */
 		20E615E124E9547D001B2BC0 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		20F28D6F24E43131000EBE35 /* HealthMonitor_LAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthMonitor_LAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20F28D6F24E43131000EBE35 /* Health Monitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Health Monitor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F28D7224E43131000EBE35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20F28D7424E43131000EBE35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		20F28D7924E43131000EBE35 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		20F28D7024E43131000EBE35 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				20F28D6F24E43131000EBE35 /* HealthMonitor_LAM.app */,
+				20F28D6F24E43131000EBE35 /* Health Monitor.app */,
 				20F28D8824E43134000EBE35 /* HealthMonitor_LAMTests.xctest */,
 				20F28D9324E43134000EBE35 /* HealthMonitor_LAMUITests.xctest */,
 			);
@@ -232,7 +232,7 @@
 				20F28DB824E453B9000EBE35 /* SwiftUICharts */,
 			);
 			productName = HealthMonitor_LAM;
-			productReference = 20F28D6F24E43131000EBE35 /* HealthMonitor_LAM.app */;
+			productReference = 20F28D6F24E43131000EBE35 /* Health Monitor.app */;
 			productType = "com.apple.product-type.application";
 		};
 		20F28D8724E43134000EBE35 /* HealthMonitor_LAMTests */ = {
@@ -532,7 +532,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "lam.HealthMonitor-LAM";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Health Monitor";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -554,7 +554,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "lam.HealthMonitor-LAM";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Health Monitor";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

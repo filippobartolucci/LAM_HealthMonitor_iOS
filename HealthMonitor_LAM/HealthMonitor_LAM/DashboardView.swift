@@ -14,47 +14,21 @@ struct DashboardView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     var reports: FetchedResults<Report>
     
+    // Value and picker selected value for graphs
     @State var pickerValue = 0
     var graphTypes = ["Temp.","Weight","Heart Rate","Glycemia"]
-    
-    private func createTemperatureArray() -> [Double] {
-        var array = [Double]()
-        for report in self.reports.reversed(){
-            array.append(Double(report.temperature))
-        }
-        return array
-    }
-    
-    private func createWeightArray() -> [Double] {
-        var array = [Double]()
-        for report in self.reports.reversed(){
-            array.append(Double(report.weight))
-        }
-        return array
-    }
-    
-    private func createHeartArray() -> [Double] {
-        var array = [Double]()
-        for report in self.reports.reversed(){
-            array.append(Double(report.heartRate))
-        }
-        return array
-    }
-    
-    private func createGlycemiaArray() -> [Double] {
-        var array = [Double]()
-        for report in self.reports.reversed(){
-            array.append(Double(report.glycemia))
-        }
-        return array
-    }
     
     var body: some View {
         NavigationView{
             ScrollView{
                 if (reports.isEmpty){
                     Spacer().frame(minHeight:buttonHeight)
-                    Text("Add your first report")
+                    
+                    boxView(content: AnyView(
+                        Text("Add your first report in Health tab").frame(minWidth: widthBound, minHeight: buttonHeight)
+                    ))
+                    
+                    
                 }else{
                     Spacer()
                     Section(header: sectionText(text: "Average values")){
@@ -74,6 +48,7 @@ struct DashboardView: View {
                     
                     myDivider().frame(minHeight:buttonHeight)
                     
+                    // Picker for graphs
                     Section(header: sectionText(text: "Graphs")){
                         Picker(selection: self.$pickerValue, label: Text("")) {
                             ForEach(0..<self.graphTypes.count){
@@ -82,24 +57,25 @@ struct DashboardView: View {
                         }.pickerStyle(SegmentedPickerStyle())
                     }.frame(maxWidth: widthBound)
                     
+                    // Graphs, choose from the picker which one to display
                     Group{
                         if (self.pickerValue) == 1{
                             boxView(content: AnyView(
-                                LineView(data: self.createWeightArray(), title: "Weight", style: weightStyle()).background(Color("boxBackground")).padding(.horizontal)
+                                LineView(data: createWeightArray(reports : self.reports), title: "Weight", style: weightStyle()).background(Color("boxBackground")).padding(.horizontal)
                             )).frame(minHeight: graphHeight).padding(.vertical)
                         }else{
                             if (self.pickerValue == 2){
                                 boxView(content: AnyView(
-                                    LineView(data: self.createHeartArray(), title: "Heart Rate", style: heartStyle()).background(Color("boxBackground")).padding(.horizontal)
+                                    LineView(data: createHeartArray(reports : self.reports), title: "Heart Rate", style: heartStyle()).background(Color("boxBackground")).padding(.horizontal)
                                 )).frame(minHeight: graphHeight).padding(.vertical)
                             }else{
                                 if (self.pickerValue == 3){
                                     boxView(content: AnyView(
-                                        LineView(data: self.createGlycemiaArray(), title: "Glycemia", style: glycemiaStyle()).background(Color("boxBackground")).padding(.horizontal)
+                                        LineView(data: createGlycemiaArray(reports : self.reports), title: "Glycemia", style: glycemiaStyle()).background(Color("boxBackground")).padding(.horizontal)
                                     )).frame(minHeight: graphHeight).padding(.vertical)
                                 }else{
                                     boxView(content: AnyView(
-                                        LineView(data: self.createTemperatureArray(), title: "Temperature", style: tempStyle()).background(Color("boxBackground")).padding(.horizontal)
+                                        LineView(data: createTemperatureArray(reports : self.reports), title: "Temperature", style: tempStyle()).background(Color("boxBackground")).padding(.horizontal)
                                     )).frame(minHeight: graphHeight).padding(.vertical)
                                 }
                                 

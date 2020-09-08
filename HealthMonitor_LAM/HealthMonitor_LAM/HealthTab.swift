@@ -31,7 +31,7 @@ struct HealthTabView: View {
                             boxView(content: AnyView(
                                 HStack{
                                     Group{
-                                        Text("Healt Monitor is an application that helps you keeping track of your healt. Track your body temperature, weight and heart rate and see how they vary over time. \n\nTap below and add your first report now")
+                                        Text("Health Monitor is an application that helps you keeping track of your health. Track your body temperature, weight and heart rate and see how they vary over time. \n\nTap below and add your first report now")
                                     }
                                     
                                 }.padding().frame(minWidth: widthBound,minHeight: rowHeight)
@@ -171,7 +171,16 @@ struct HealthTabView: View {
             }
         }.onAppear{
             self.notificationManager.checkMonitoringNotifications(monitoring: self.monitoring, rs: self.reports)
-            
+            for m in self.monitoring {
+                if m.daysLeft < 1 {
+                    self.managedObjectContext.delete(m)
+                    do {
+                        try self.managedObjectContext.save()
+                    } catch {
+                        print("Error saving managed object context: \(error)")
+                    }
+                }
+            }
         }
     }
 }

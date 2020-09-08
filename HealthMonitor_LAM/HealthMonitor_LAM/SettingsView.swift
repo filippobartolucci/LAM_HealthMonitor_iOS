@@ -13,15 +13,20 @@ import CoreData
 struct SettingsView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
+    
     //MARK: - NotificationSettings
     @State var monitoredDays = 7
     @State var importance = 1
+    
     var value = ["Temp","Weight","Heart Rate","Glycemia"]
     @State var pickerValue : Int = 0
+    
     @State var limit = ""
     
     @State var notificationManager : LocalNotificationManager
     @State var reminderTime = Date()
+    
+    @State var alert = false
     
     func createNewMonitoring(){
         print("creating new monitoring...")
@@ -63,7 +68,7 @@ struct SettingsView: View {
                                     }
                                 )).padding(.horizontal)){
                                     HStack{
-                                        Text("Time of reminder")
+                                        Text("Reminder time")
                                         Spacer()
                                         Image(systemName: "arrow.right")
                                     }.padding(.horizontal)
@@ -73,6 +78,7 @@ struct SettingsView: View {
                         
                         Button(action: {
                             self.notificationManager.sendDailyNotification(d: self.reminderTime)
+                            self.alert = true
                         }){
                             boxView(content: AnyView(
                                 HStack{
@@ -87,11 +93,10 @@ struct SettingsView: View {
                     myDivider().padding(.vertical)
                     
                     Section(header: sectionText(text: "Monitor Yourself")){
-                        
                         boxView(content: AnyView(
                             HStack{
                                 Group{
-                                    Text("Track a personal value of your choice. Set a threshold value that must not be exceeded by the average. Choose which reports to use based on their importance ")
+                                    Text("Track multiple personal values of your choice. Set a threshold value that must not be exceeded by the average. Choose which reports to use based on their importance ")
                                 }
                                 
                             }.padding().frame(minWidth: widthBound,minHeight: rowHeight)
@@ -134,6 +139,7 @@ struct SettingsView: View {
                         
                         Button(action: {
                             self.createNewMonitoring()
+                            self.alert = true
                         }){
                             boxView(content: AnyView(
                                 HStack{
@@ -174,6 +180,9 @@ struct SettingsView: View {
                 }
             }
         }.accentColor(Color("text")).navigationBarTitle("Settings")
+        .alert(isPresented: $alert) {
+            Alert(title: Text("Health Monitor"), message: Text("Notification created"), dismissButton: .default(Text("OK")))
+        }
     }
 }
 
