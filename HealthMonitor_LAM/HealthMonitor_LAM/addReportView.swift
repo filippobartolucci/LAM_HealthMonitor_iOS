@@ -38,7 +38,7 @@ struct addReportView: View {
         
         if (checkTemp >= 33.0 && checkTemp <= 44.0){
             if (checkWeight > 0.0){
-                if (checkHeart >= 20){
+                if (checkHeart >= 30){
                     if (checkGlycemia >= 50){
                         return true
                     }
@@ -194,8 +194,8 @@ struct addReportView: View {
                     NavigationLink(destination: FormView(content: AnyView(
                         VStack{
                             Form{
-                                TextField("Heart rate value must be > 30", text: $heartRate)
-                                    .keyboardType(.decimalPad)
+                                TextField("Heart rate value must be >= 30", text: $heartRate)
+                                    .keyboardType(.numberPad)
                                 Stepper("Importance: \(heartImportance)", value: $heartImportance, in: 1...5)
                             }
                             Spacer()
@@ -217,8 +217,8 @@ struct addReportView: View {
                     NavigationLink(destination: FormView(content: AnyView(
                         VStack{
                             Form{
-                                TextField("Glycemia value must be > 50", text: $glycemia)
-                                    .keyboardType(.decimalPad)
+                                TextField("Glycemia value must be >= 50", text: $glycemia)
+                                    .keyboardType(.numberPad)
                                 Stepper("Importance: \(heartImportance)", value: $glycemiaImportance, in: 1...5)
                             }
                             Spacer()

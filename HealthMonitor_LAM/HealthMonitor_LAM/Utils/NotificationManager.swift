@@ -52,7 +52,7 @@ class LocalNotificationManager: ObservableObject {
         
     }
     
-    
+    // check all Monitoring objects to see if it's time to send a notification
     func checkMonitoringNotifications(monitoring: FetchedResults<Monitoring>, rs : FetchedResults<Report>) -> (){
         if rs.isEmpty || monitoring.isEmpty{
             if rs.isEmpty{
@@ -65,16 +65,18 @@ class LocalNotificationManager: ObservableObject {
         print("Checking monitoring...")
         
         for m in monitoring{
+            // check to see if the last modified date of the report is different from today
             if !compareDate(date1: m.day ?? Date(), date2: Date()){
+                // Date updating
                 m.day = Date()
                 m.daysLeft -= 1
                 if (m.daysLeft < 1){
                     let avgV = avgMonitoringValue(m: m, rs: rs)
-                    
                     if (avgV == 0){
                         return
                     }
                     
+                    // type of notification to send
                     if avgV <= m.limit {
                         self.sendOKMonitoringNotifications(value: m.value!, limit: m.limit, avg: avgV)
                     }else{
@@ -86,7 +88,7 @@ class LocalNotificationManager: ObservableObject {
     }
     
     func sendOKMonitoringNotifications(value: String, limit: Float, avg: Float) -> (){
-        self.center.removeAllPendingNotificationRequests()
+        self.removePendingNotification()
         
         // Content
         let content = UNMutableNotificationContent()
@@ -95,9 +97,17 @@ class LocalNotificationManager: ObservableObject {
         content.sound = UNNotificationSound.default
         
         
+        var dateComponents = DateComponents()
+        dateComponents.calendar = Calendar.current
+        dateComponents.hour = Calendar.current.component(.hour, from: Date())
+        dateComponents.minute = Calendar.current.component(.minute, from: Date()) + 1
+        
+           
+        // Create the trigger as a non repeating event.
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        
         // Enable
         print("Creating new notification")
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         self.center.add(request) { error in
             guard error == nil else {
@@ -109,7 +119,7 @@ class LocalNotificationManager: ObservableObject {
     }
     
     private func sendNotOKMonitoringNotifications(value: String, limit: Float, avg: Float) -> (){
-        self.center.removeAllPendingNotificationRequests()
+        self.removePendingNotification()
         // Content
         
         let content = UNMutableNotificationContent()
@@ -119,11 +129,13 @@ class LocalNotificationManager: ObservableObject {
         
         var dateComponents = DateComponents()
         dateComponents.calendar = Calendar.current
-        dateComponents.hour = 18  
+        dateComponents.hour = Calendar.current.component(.hour, from: Date())
+        dateComponents.minute = Calendar.current.component(.minute, from: Date()) + 1
+        
            
-        // Create the trigger as a repeating event.
-        let trigger = UNCalendarNotificationTrigger(
-                 dateMatching: dateComponents, repeats: false)
+        // Create the trigger as a non repeating event.
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        
         // Enable
         print("Creating new notification")
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)

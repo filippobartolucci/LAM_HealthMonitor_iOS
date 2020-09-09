@@ -53,9 +53,9 @@ struct avgReportCard: View {
                             
                             
                             HStack{
-                                Text(String(avgTemperature(report: self.reports))).font(.system(size: 40))
-                                Text("°C").font(.system(size: 23)).offset(x:-5)
-                            }.offset(x:10, y:-15)
+                                Text(String(avgTemperature(report: self.reports))).font(.system(size: 36))
+                                Text("°C").font(.system(size: 18)).offset(x:-5)
+                            }.offset(x:15, y:-15)
                             
                             Text("Healthy under 37.5").font(.caption)
                         }.frame(maxWidth:squareSize,minHeight:squareSize*0.8)
@@ -81,8 +81,8 @@ struct avgReportCard: View {
                             }.offset(x : 20, y:0).foregroundColor(Color("purple"))
                             
                             HStack{
-                                Text(String(avgWeight(report: self.reports))).font(.system(size: 40))
-                                Text("KG").font(.system(size: 23)).offset(x:-5)
+                                Text(String(avgWeight(report: self.reports))).font(.system(size: 36))
+                                Text("KG").font(.system(size: 18)).offset(x:-5)
                             }.offset(x:15, y:-15)
                             
                             Text("Stay fit").font(.caption)
@@ -111,8 +111,8 @@ struct avgReportCard: View {
                             }.offset(x : 20, y:0).foregroundColor(Color("red"))
                             
                             HStack{
-                                Text(String(avgHeartRate(report: self.reports))).font(.system(size: 40))
-                                Text("Bpm").font(.system(size: 23)).offset(x:-5)
+                                Text(String(avgHeartRate(report: self.reports))).font(.system(size: 36))
+                                Text("Bpm").font(.system(size: 18)).offset(x:-5)
                             }.offset(x:13, y:-15)
                             
                             Text("Stay healthy").font(.caption)
@@ -139,8 +139,8 @@ struct avgReportCard: View {
                             }.offset(x : 20, y:0).foregroundColor(Color("greenBlue"))
                             
                             HStack{
-                                Text(String(avgGlycemia(report: self.reports))).font(.system(size: 40))
-                                Text("mg/dl").font(.system(size: 23)).offset(x:-5)
+                                Text(String(avgGlycemia(report: self.reports))).font(.system(size: 36))
+                                Text("mg/dl").font(.system(size: 18)).offset(x:-5)
                             }.offset(x:15, y:-15)
                             Text("Healthy under 126 mg/dl").font(.caption).offset(y:-5)
                         }.frame(maxWidth:squareSize,minHeight:squareSize*0.8)
@@ -154,7 +154,7 @@ struct avgReportCard: View {
     }
     
     
-    func avgTemperature(report: FetchedResults<Report>) -> Double {
+    private func avgTemperature(report: FetchedResults<Report>) -> Double {
         var avg = 0.0
         for r in report{
             avg += Double(r.temperature)
@@ -162,7 +162,7 @@ struct avgReportCard: View {
         return (Double(avg/Double(report.count))*10).rounded()/10
     }
     
-    func avgWeight(report: FetchedResults<Report>) -> Double {
+    private func avgWeight(report: FetchedResults<Report>) -> Double {
         var avg = 0.0
         for r in report{
             avg += Double(r.weight)
@@ -170,7 +170,7 @@ struct avgReportCard: View {
         return (Double(avg/Double(report.count))*10).rounded()/10
     }
     
-    func avgHeartRate(report: FetchedResults<Report>) -> Int {
+    private func avgHeartRate(report: FetchedResults<Report>) -> Int {
         var avg = 0.0
         for r in report{
             avg += Double(r.heartRate)
@@ -178,7 +178,7 @@ struct avgReportCard: View {
         return (Int(avg/Double(report.count)))
     }
     
-    func avgGlycemia(report: FetchedResults<Report>) -> Int {
+    private func avgGlycemia(report: FetchedResults<Report>) -> Int {
         var avg = 0.0
         for r in report{
             avg += Double(r.glycemia)

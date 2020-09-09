@@ -24,6 +24,7 @@ struct HealthTabView: View {
         NavigationView{
             ScrollView{
                 Group{
+                    // conditional view, if there are no reports saved show a welcome screen
                     if (self.reports.isEmpty){
                         // MARK: - Empty reports
                         Spacer()
@@ -31,7 +32,7 @@ struct HealthTabView: View {
                             boxView(content: AnyView(
                                 HStack{
                                     Group{
-                                        Text("Health Monitor is an application that helps you keeping track of your health. Track your body temperature, weight and heart rate and see how they vary over time. \n\nTap below and add your first report now")
+                                        Text("Health Monitor is an application that helps you keeping track of your health. Track your body temperature, weight, heart rate and glycemia. See how they vary over time. \n\nTap below and add your first report now")
                                     }
                                     
                                 }.padding().frame(minWidth: widthBound,minHeight: rowHeight)
@@ -53,11 +54,9 @@ struct HealthTabView: View {
                         }.navigationBarTitle(Text("Summary"), displayMode: .automatic)
                         
                     }else{
-                        
                         // MARK: - Non empty reports
                         Spacer()
                         Section(header: HStack{Text("Last report values");Spacer();Text(reports.first!.date!.stringify())}.frame(maxWidth : widthBound)){
-                            
                             // MARK: -Temperature
                             boxView(content: AnyView(
                                 HStack{
@@ -81,7 +80,6 @@ struct HealthTabView: View {
                                     Text("°C").font(.caption)
                                 }.padding().frame(minWidth : widthBound,minHeight: rowHeight)
                             )).padding(.horizontal)
-                            
                             
                             // MARK: -Weight
                             boxView(content: AnyView(
@@ -170,6 +168,7 @@ struct HealthTabView: View {
                 }
             }
         }.onAppear{
+            // Check Monitoring data
             self.notificationManager.checkMonitoringNotifications(monitoring: self.monitoring, rs: self.reports)
             for m in self.monitoring {
                 if m.daysLeft < 1 {

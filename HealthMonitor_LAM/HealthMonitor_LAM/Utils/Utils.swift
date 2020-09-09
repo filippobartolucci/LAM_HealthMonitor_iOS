@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 import CoreData
 
+// true if date1 and date2 are the same excluding the time
 func compareDate(date1:Date, date2:Date) -> Bool {
     let order = NSCalendar.current.compare(date1, to: date2, toGranularity: .day)
     switch order {

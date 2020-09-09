@@ -21,3 +21,9 @@ struct boxView: View {
         .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
     }
 }
+
+struct boxView_Previews: PreviewProvider {
+    static var previews: some View {
+        boxView(content: AnyView(Text("\nHello World\n")))
+    }
+}

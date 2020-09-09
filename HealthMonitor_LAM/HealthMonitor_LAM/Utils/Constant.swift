@@ -18,7 +18,7 @@ let widthBound : CGFloat = UIScreen.main.bounds.size.width*0.9
 let squareSize : CGFloat = UIScreen.main.bounds.size.width*0.9*0.5
 
 
-// Chart 
+// Charts
 func tempStyle() -> ChartStyle {
     let styleTemp = ChartStyle(backgroundColor: Color("boxBackground"), accentColor: Color("lightBlue"), gradientColor: GradientColor(start: Color("lightBlue"), end: Color(.blue)), textColor: Color("text"), legendTextColor: Color("text"), dropShadowColor: Color("Text"))
     styleTemp.darkModeStyle = styleTemp

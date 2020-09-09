@@ -22,6 +22,7 @@ struct DashboardView: View {
         NavigationView{
             ScrollView{
                 if (reports.isEmpty){
+                    // no reports saved
                     Spacer().frame(minHeight:buttonHeight)
                     
                     boxView(content: AnyView(
@@ -31,6 +32,8 @@ struct DashboardView: View {
                     
                 }else{
                     Spacer()
+                    
+                    // Avg card
                     Section(header: sectionText(text: "Average values")){
                         avgReportCard(reports:self.reports)
                     }
