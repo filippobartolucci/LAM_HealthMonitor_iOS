@@ -22,9 +22,9 @@ struct ReportDetail: View {
                 boxView(content: AnyView(
                     HStack{
                         if (report.temperature>37.5){
-                            Image(systemName: "flame").foregroundColor(Color(.red))
+                            Image(systemName: "flame").foregroundColor(Color("heartRed"))
                             VStack(alignment: .leading){
-                                Text("Temperature").foregroundColor(Color(.red))
+                                Text("Temperature").foregroundColor(Color("heartRed"))
                                 Text("Importance: " + String(report.temperatureImportance) + "/5").font(.caption)
                             }
                         }else{
@@ -120,14 +120,7 @@ struct ReportDetail: View {
                 
                 // MARK: -Edit report
                 NavigationLink(destination: editReport(report: self.report, temperature: String(self.report.temperature), date: self.report.date!, weight: String(self.report.weight), heartRate: String(self.report.heartRate), glycemia: String(self.report.glycemia), text: self.report.note!, tempImportance: self.report.temperatureImportance, weightImportance: self.report.weightImportance, heartImportance: self.report.heartRateImportance, glycemiaImportance: self.report.glycemiaImportance)){
-                    boxView(content: AnyView(
-                        HStack{
-                            Image(systemName: "ellipsis")
-                            Text("Edit Report")
-                            Spacer()
-                            Image(systemName: "arrow.right")
-                        }.accentColor(Color("heartRed")).padding(.horizontal).frame(minWidth : widthBound,maxWidth:widthBound, minHeight: buttonHeight)
-                    )).padding(.horizontal)
+                    NavigationButton(imageName: "ellipsis", text: "Edit Report", colour: "heartRed")
                 }
             }
         }

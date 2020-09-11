@@ -29,7 +29,6 @@ class LocalNotificationManager: ObservableObject {
     
     // Set new notification
     func sendDailyNotification(d: Date) -> (){
-        
         // Disable old notifications
         self.removePendingNotification()
         
@@ -67,38 +66,37 @@ class LocalNotificationManager: ObservableObject {
         for m in monitoring{
             // check to see if the last modified date of the report is different from today
             if !compareDate(date1: m.day ?? Date(), date2: Date()){
+                // Days between last update and today
+                m.daysLeft -= Int16(daysBetween(firstDate: m.day!, secondDate: Date()))
                 // Date updating
                 m.day = Date()
-                m.daysLeft -= 1
                 if (m.daysLeft < 1){
                     let avgV = avgMonitoringValue(m: m, rs: rs)
                     if (avgV == 0){
                         return
                     }
-                    
-                    // type of notification to send
-                    if avgV <= m.limit {
-                        self.sendOKMonitoringNotifications(value: m.value!, limit: m.limit, avg: avgV)
-                    }else{
-                        self.sendNotOKMonitoringNotifications(value: m.value!, limit: m.limit, avg: avgV)
-                    }
+                    // notification to send
+                    self.sendMonitoringNotification(value: m.value!, limit: m.limit, avg: avgV, start: m.startDay!)
                 }
             }
         }
     }
     
-    func sendOKMonitoringNotifications(value: String, limit: Float, avg: Float) -> (){
-        self.removePendingNotification()
-        
+    func sendMonitoringNotification(value: String, limit: Float, avg: Float, start: Date) -> (){
         // Content
         let content = UNMutableNotificationContent()
-        content.title = "Congratulations!"
-        content.body = "Your avg. \(value) was \(avg), below the limit of \(limit)"
+        content.title = "Monitoring: " + start.stringify() + " - " + Date().stringify()
+        content.body = "Avg. \(value) was \(avg), "
+        if avg <= limit{
+            content.body += "below the limit of \(limit)"
+        }else{
+            content.body += "over the limit of \(limit)"
+        }
+        
         content.sound = UNNotificationSound.default
         
         
         var dateComponents = DateComponents()
-        dateComponents.calendar = Calendar.current
         dateComponents.hour = Calendar.current.component(.hour, from: Date())
         dateComponents.minute = Calendar.current.component(.minute, from: Date()) + 1
         
@@ -118,35 +116,6 @@ class LocalNotificationManager: ObservableObject {
         }
     }
     
-    private func sendNotOKMonitoringNotifications(value: String, limit: Float, avg: Float) -> (){
-        self.removePendingNotification()
-        // Content
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Something went wrong..."
-        content.body = "Your avg. \(value) was \(avg),over the limit of \(limit)"
-        content.sound = UNNotificationSound.default
-        
-        var dateComponents = DateComponents()
-        dateComponents.calendar = Calendar.current
-        dateComponents.hour = Calendar.current.component(.hour, from: Date())
-        dateComponents.minute = Calendar.current.component(.minute, from: Date()) + 1
-        
-           
-        // Create the trigger as a non repeating event.
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        
-        // Enable
-        print("Creating new notification")
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        self.center.add(request) { error in
-            guard error == nil else {
-                print("Error occurred!")
-                return
-            }
-            print("Notification scheduled!")
-        }
-    }
     
     // Delete all pending notifications
     func removePendingNotification(){

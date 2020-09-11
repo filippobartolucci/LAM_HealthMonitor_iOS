@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20B50558250912B200BBA21D /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B50557250912B200BBA21D /* NavigationButton.swift */; };
 		20E615E224E9547D001B2BC0 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E615E124E9547D001B2BC0 /* NotificationManager.swift */; };
 		20F28D7324E43131000EBE35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F28D7224E43131000EBE35 /* AppDelegate.swift */; };
 		20F28D7524E43131000EBE35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F28D7424E43131000EBE35 /* SceneDelegate.swift */; };
@@ -50,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20B505562508FFD600BBA21D /* Health Monitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Health Monitor.entitlements"; sourceTree = "<group>"; };
+		20B50557250912B200BBA21D /* NavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
 		20E615E124E9547D001B2BC0 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		20F28D6F24E43131000EBE35 /* Health Monitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Health Monitor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F28D7224E43131000EBE35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +132,7 @@
 		20F28D7124E43131000EBE35 /* HealthMonitor_LAM */ = {
 			isa = PBXGroup;
 			children = (
+				20B505562508FFD600BBA21D /* Health Monitor.entitlements */,
 				20F28DA524E431D9000EBE35 /* Delegate */,
 				20F28DAB24E43212000EBE35 /* TabView */,
 				20FA191024E53FFA004EA05D /* ReportView */,
@@ -191,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				20F28DB324E4494A000EBE35 /* boxView.swift */,
+				20B50557250912B200BBA21D /* NavigationButton.swift */,
 				20F28DB524E4518B000EBE35 /* Constant.swift */,
 				20FA190424E486A3004EA05D /* DateExtension.swift */,
 				20E615E124E9547D001B2BC0 /* NotificationManager.swift */,
@@ -353,6 +358,7 @@
 				20F28DB424E4494A000EBE35 /* boxView.swift in Sources */,
 				20FA191824E56EEE004EA05D /* avgReportCard.swift in Sources */,
 				20F28DB224E44098000EBE35 /* HealthMonitor_LAM.xcdatamodeld in Sources */,
+				20B50558250912B200BBA21D /* NavigationButton.swift in Sources */,
 				20F28DB624E4518B000EBE35 /* Constant.swift in Sources */,
 				20FA190524E486A3004EA05D /* DateExtension.swift in Sources */,
 				20FA191424E542B4004EA05D /* ReportRow.swift in Sources */,
@@ -521,7 +527,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = "HealthMonitor_LAM/Health Monitor.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"HealthMonitor_LAM/Preview Content\"";
 				DEVELOPMENT_TEAM = 2X58VNGWW7;
@@ -543,7 +549,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = "HealthMonitor_LAM/Health Monitor.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"HealthMonitor_LAM/Preview Content\"";
 				DEVELOPMENT_TEAM = 2X58VNGWW7;

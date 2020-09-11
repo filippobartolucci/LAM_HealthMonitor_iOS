@@ -5,7 +5,6 @@
 //  Created by Filippo Bartolucci on 12/08/2020.
 //  Copyright © 2020 Filippo Bartolucci. All rights reserved.
 //
-
 import SwiftUI
 
 struct HealthTabView: View {
@@ -42,14 +41,7 @@ struct HealthTabView: View {
                         Group{
                             // MARK: -Add Report
                             NavigationLink(destination: addReportView(reports: self.reports)) {
-                                boxView(content: AnyView(
-                                    HStack{
-                                        Image(systemName: "plus.square")
-                                        Text("Add Report")
-                                        Spacer()
-                                        Image(systemName: "arrow.right").accentColor(Color(.gray))
-                                    }.padding(.horizontal).frame(minWidth : widthBound, maxWidth: widthBound, minHeight: buttonHeight)
-                                ))
+                                NavigationButton(imageName: "plus.square", text: "Add Report", colour: "heartRed")
                             }.accentColor(Color("heartRed")).padding(.horizontal)
                         }.navigationBarTitle(Text("Summary"), displayMode: .automatic)
                         
@@ -62,10 +54,10 @@ struct HealthTabView: View {
                                 HStack{
                                     if (reports.first!.temperature>37.5){
                                         Group{
-                                            Image(systemName: "flame").accentColor(Color(.red))
+                                            Image(systemName: "flame").foregroundColor(Color("heartRed"))
                                             VStack(alignment: .leading){
                                                 Text("Temperature")
-                                            }.foregroundColor(Color(.red))
+                                            }.foregroundColor(Color("heartRed"))
                                         }
                                     }else{
                                         Group{
@@ -127,39 +119,19 @@ struct HealthTabView: View {
                             NavigationLink(destination:
                                 ReportList(reports:self.reports)
                             ) {
-                                boxView(content: AnyView(
-                                    HStack{
-                                        Image(systemName: "folder")
-                                        Text("Show all reports")
-                                        Spacer()
-                                        Image(systemName: "arrow.right").accentColor(Color("text"))
-                                    }.accentColor(Color("orange")).padding(.horizontal).frame(minWidth : widthBound, minHeight: buttonHeight)
-                                ))
+                                NavigationButton(imageName: "folder", text: "Show all reports", colour: "orange")
+                                
                             }.padding(.top).frame(maxWidth : widthBound)
                             
                             // MARK: -Add Report
                             NavigationLink(destination: addReportView(reports: self.reports)) {
-                                boxView(content: AnyView(
-                                    HStack{
-                                        Image(systemName: "plus.square")
-                                        Text("Add Report")
-                                        Spacer()
-                                        Image(systemName: "arrow.right").accentColor(Color("text"))
-                                    }.padding(.horizontal).frame(minWidth : widthBound,maxWidth:widthBound, minHeight: buttonHeight)
-                                ))
+                                NavigationButton(imageName: "plus.square", text: "Add report", colour: "heartRed")
                             }.accentColor(Color("heartRed")).padding(.horizontal)
                             
                             
                             // MARK: -Settings
-                            NavigationLink(destination: SettingsView(notificationManager: self.notificationManager)){
-                                boxView(content: AnyView(
-                                    HStack{
-                                        Image(systemName: "gear")
-                                        Text("Settings")
-                                        Spacer()
-                                        Image(systemName: "arrow.right").accentColor(Color("text"))
-                                    }.accentColor(Color(.gray)).padding(.horizontal).frame(minWidth : widthBound,maxWidth:widthBound, minHeight: buttonHeight)
-                                )).padding(.horizontal)
+                            NavigationLink(destination: SettingsView(monitoring: self.monitoring, notificationManager: self.notificationManager)){
+                                NavigationButton(imageName: "gear", text: "Settings", colour: "gray")
                             }
                             .navigationBarTitle(Text("Summary"), displayMode: .automatic)
                             .padding(.bottom)
@@ -173,12 +145,13 @@ struct HealthTabView: View {
             for m in self.monitoring {
                 if m.daysLeft < 1 {
                     self.managedObjectContext.delete(m)
-                    do {
-                        try self.managedObjectContext.save()
-                    } catch {
-                        print("Error saving managed object context: \(error)")
-                    }
+            
                 }
+            }
+            do {
+                try self.managedObjectContext.save()
+            } catch {
+                print("Error saving managed object context: \(error)")
             }
         }
     }

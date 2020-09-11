@@ -44,7 +44,6 @@ struct ReportList: View {
         }
     }
     
-    
     func deleteReport(at offsets: IndexSet) {
         print("Deleting report...")
         

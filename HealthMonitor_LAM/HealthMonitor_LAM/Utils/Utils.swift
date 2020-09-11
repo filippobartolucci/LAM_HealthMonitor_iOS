@@ -21,6 +21,15 @@ func compareDate(date1:Date, date2:Date) -> Bool {
     }
 }
 
+func daysBetween(firstDate : Date, secondDate: Date) -> Int{
+    let calendar = Calendar.current
+
+    // Replace the hour (time) of both dates with 00:00
+    let date1 = calendar.startOfDay(for: firstDate)
+    let date2 = calendar.startOfDay(for: secondDate)
+
+    return calendar.dateComponents([.day], from: date1, to: date2).day!
+}
 
 // create an array of a value for graph
 func createTemperatureArray(reports: FetchedResults<Report>) -> [Double] {
@@ -58,7 +67,7 @@ func avgMonitoringValue(m: Monitoring, rs: FetchedResults<Report>) -> Float{
     var sum = Float(0)
     var counter = 0
     
-    // a report r is used for the avg only if:
+    // a report r is used for avg only if:
     // - m.startDay < r.date
     // - m.importance <= r.value.importance
     

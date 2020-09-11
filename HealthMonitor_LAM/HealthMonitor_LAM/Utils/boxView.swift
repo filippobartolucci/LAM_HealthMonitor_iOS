@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct boxView: View {
-    @Environment(\.colorScheme) var colorScheme
     var content : AnyView
     
     var body : some View {
@@ -27,3 +26,4 @@ struct boxView_Previews: PreviewProvider {
         boxView(content: AnyView(Text("\nHello World\n")))
     }
 }
+

@@ -18,6 +18,8 @@ struct SettingsView: View {
     @State var monitoredDays = 7
     @State var importance = 1
     
+    var monitoring: FetchedResults<Monitoring>
+    
     var value = ["Temp","Weight","Heart Rate","Glycemia"]
     @State var pickerValue : Int = 0
     
@@ -41,13 +43,16 @@ struct SettingsView: View {
         m.numberOfDays = Int16(self.monitoredDays)
         m.daysLeft = Int16(self.monitoredDays)
         
+        self.saveContext()
+    }
+    
+    func saveContext() {
         do {
             try managedObjectContext.save()
         } catch {
             print("Error saving managed object context: \(error)")
         }
     }
-    
     
     
     var body: some View {
@@ -89,6 +94,19 @@ struct SettingsView: View {
                             ))
                         }.frame(minHeight: buttonHeight)
                     }
+                    Spacer()
+                    
+                    Button(action: {
+                        self.notificationManager.removePendingNotification()
+                    }){
+                        boxView(content: AnyView(
+                            HStack{
+                                Text("Disable reminder").accentColor(.red)
+                                    .frame(minHeight: buttonHeight)
+                                Spacer()
+                            }.padding(.horizontal)
+                        ))
+                    }.frame(minHeight: buttonHeight)
                     
                     myDivider().padding(.vertical)
                     
@@ -151,19 +169,23 @@ struct SettingsView: View {
                         }.frame(minHeight: buttonHeight).disabled(self.limit.count == 0 ? true : false)
                     }
                     
-                    myDivider().padding(.vertical)
+                    Spacer()
                     
                     Button(action: {
-                        self.notificationManager.removePendingNotification()
+                        for m in self.monitoring{
+                            self.managedObjectContext.delete(m)
+                        }
+                        self.saveContext()
                     }){
                         boxView(content: AnyView(
                             HStack{
-                                Text("Disable all notifications").accentColor(.red)
+                                Text("Disable monitoring").accentColor(.red)
                                     .frame(minHeight: buttonHeight)
                                 Spacer()
                             }.padding(.horizontal)
                         ))
                     }.frame(minHeight: buttonHeight)
+                    
                     Spacer()
                     
                 }else{
