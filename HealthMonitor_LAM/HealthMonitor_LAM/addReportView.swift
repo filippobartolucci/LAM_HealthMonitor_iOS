@@ -219,7 +219,7 @@ struct addReportView: View {
                             Form{
                                 TextField("Glycemia value must be >= 50", text: $glycemia)
                                     .keyboardType(.numberPad)
-                                Stepper("Importance: \(heartImportance)", value: $glycemiaImportance, in: 1...5)
+                                Stepper("Importance: \(glycemiaImportance)", value: $glycemiaImportance, in: 1...5)
                             }
                             Spacer()
                         }
